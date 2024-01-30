@@ -1,0 +1,256 @@
+/* IMPORTING WEBFONTS */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
+@import url(https://fonts.googleapis.com/css?family=Kalam:400,700);
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid:400,900&display=swap');
+
+/* RESET
+----------------------------------------------- */
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0; outline:none;}
+fieldset, img { border:0 }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
+ol, ul, li { list-style:none }
+caption, th { text-align:left }
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
+q:before, q:after { content:''}
+
+strong {font-weight:bold;}
+em {font-style:italic;}
+a img {border:none;}
+
+/* HTML PREDEFINED TAGS
+----------------------------------------------- */
+body {
+	background:#00AEEF;
+	color:#444;
+	font-family:'Open Sans', sans-serif;
+	font-size:14px;
+	line-height:18px;
+	margin:0 auto;
+	padding:0;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6{color:#666; font-family:'Open Sans', sans-serif; font-weight:300;}
+h1, h2, h3{margin-bottom:10px;}
+h4, h5, h6{margin-bottom:15px;}
+h1 {font-size:30px; line-height:32px;}
+h2 {font-size:28px; line-height:28px;}
+h3 {font-size:20px; line-height:22px;}
+h4 {font-size:16px; line-height:20px;}
+h5 {font-size:14px; line-height:18px;}
+h6 {font-size:11px; line-height:16px;}
+
+/* LINKS */
+a {color:#0099cc; font-weight:normal; text-decoration:none;}
+a:hover {color:#237dac; text-decoration:none;}
+a img {border:none}
+
+/* LISTS, BLOCKQUOTES AND PARAGRAPHS */
+p, ul, ol, blockquote {margin-bottom:10px;}
+body p:last-child{margin-bottom:0;}
+ul {margin:10px 0 20px 0px;}
+ol {margin:10px 0 20px 25px;}
+
+/* CLEAR */
+.clear {clear:both; float:none!important;}
+
+/* PAGE STRUCTURE
+----------------------------------------------- */
+/* WRAPPER */
+.wrapper {margin:0 auto; margin-top:20px; max-width:1170px; width:90%;}
+
+h1 {
+  color:#fff;
+  font-family: 'Londrina Solid', cursive;
+  font-size:60px;
+  font-weight: 900;
+  padding-top:30px;
+  text-shadow:1px 1px #3B3B3D, 2px 2px #3B3B3D;
+}
+
+/* HEADER */
+#header {display:inline;}
+#header ul li {display:inline-block; font-size:60px; margin-right:20px;}
+#header ul li a {color:#fff; color:rgba(0, 0, 0, 0.2); transition-duration:0.3s;}
+#header ul li a:hover {color:#fff; color:rgba(0, 0, 0, 0.4);}
+
+/* CARD */
+.card {
+	background-color:#fff;
+	border:1px solid #d8d8d8;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:20px;
+	border-bottom-width:3px;
+	border-right-width:3px;
+	margin-bottom:10%;
+	padding:8px 10px;
+}
+
+.card img {width:90%;}
+.card p {font-weight:700;}
+
+/* INPUT-FIELD */
+#input-field {
+	font-size:60px;
+	font-weight:700;
+	border:none;
+	height:130px;
+	text-indent:20px;
+	text-transform:uppercase;
+	width:100%;
+}
+
+/* TEXTAREA */
+#textarea {
+  font-family:'Patrick Hand', cursive;
+	font-size:60px;
+	border:none;
+	height:550px;
+	width:100%;
+
+
+  font-size: 24px;
+  border: none;
+  background-attachment: local;
+  background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #CCC 36px, #CCC 38px);
+  line-height: 38px;
+  padding: 6.3333333333px 0 6.3333333333px 10px;
+}
+
+
+
+.paper {
+  background: #fafafa;
+	border:1px solid #d8d8d8;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:20px;
+	border-bottom-width:3px;
+	border-right-width:3px;
+  height: 530px;
+  margin: 0 auto;
+  margin-bottom:10%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.paper:before {
+  background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid #D44147;
+  bottom: 0;
+  box-sizing: border-box;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 60px;
+}
+
+.paper-content {
+  background: linear-gradient(transparent, transparent 28px, #91D1D3 28px);
+  background-size: 30px 30px;
+  position: absolute;
+  top: 30px; right: 0; bottom: 30px; left: 60px;
+}
+
+.paper-content textarea {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  font-family:'Patrick Hand', cursive;
+  font-size: 28px;
+  height: 100%;
+  line-height: 30px;
+  max-height: 100%;
+  max-width: 100%;
+  outline: 0;
+  padding: 0 10px;
+  width: 100%;
+  z-index: 1;
+}
+
+
+#texty {
+
+  background-attachment: local;
+  background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #f1f1f1 36px, #f1f1f1 38px);
+  line-height: 38px;
+  padding: 6.3333333333px 0 6.3333333333px 10px;
+
+
+	border:1px solid #d8d8d8;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:20px;
+	border-bottom-width:3px;
+	border-right-width:3px;
+	font-family:'Patrick Hand', cursive;
+	font-size: 28px;
+	height: 530px;
+	resize: none;
+	width: 100%;
+}
+
+
+
+/* SWEET-ALERT */
+.swal-modal {
+  background-color:#fff;
+	border:1px solid #d8d8d8;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:20px;
+  border-bottom-width:3px;
+  border-right-width:3px;
+}
+
+.swal-button:focus {box-shadow:none;}
+
+/* COLUMNS */
+.one-half {width:48%;}
+.one-third {width:30.66%;}
+.two-third {width:65.33%;}
+.one-fourth {width:22%;}
+.three-fourth {width:74%;}
+.one-fifth {width:16.8%;}
+.two-fifth {width:37.6%;}
+.three-fifth {width:58.4%;}
+.four-fifth {width:67.2%;}
+.one-sixth {width:13.33%;}
+.five-sixth {width:82.67%;}
+.one-half, .one-third, .two-third, .three-fourth, .one-fourth, .one-fifth, .two-fifth, .three-fifth, .four-fifth, .one-sixth, .five-sixth {position:relative; margin-right:4%; float:left;}
+.last {margin-right:0 !important; clear:right;}
+
+/* CUSTOM CLASSES
+----------------------------------------------- */
+.right {float:right;}
+.left {float:left;}
+.bold {font-weight:bold;}
+.italic {font-style:italic;}
+.underline {border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
+.center {text-align:center;}
+img.center {display:block; margin-left:auto; margin-right:auto;}
+
+/* SPACER */
+div.spacer {clear:both; display:block; height:10px;}
+
+/* PRINT */
+/*
+@media print {
+  @page {margin: 0; size: A4 portrait;}
+  body {visibility: hidden; background:none;}
+  .paper {background: #fff; border: none; width: 100%; height: 842px; visibility: visible; -webkit-print-color-adjust: exact;}
+}
+*/
+
+@media print {
+  @page {margin: 0; size: A4 portrait;}
+  body {visibility: hidden; background:none;}
+  #texty { border: none; width: 100%; height: 842px; visibility: visible; -webkit-print-color-adjust: exact;}
+}
+
+/*
+https://fivera.net/paper-text-area-created-with-css-only-editable-example/
+https://codepen.io/fivera/pen/RPyReX
+https://codepen.io/lachieh/pen/GEQrow
+*/
