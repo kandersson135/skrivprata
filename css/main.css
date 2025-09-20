@@ -107,7 +107,7 @@ h1 {
 	*/
 	font-family:'Patrick Hand', cursive;
 	font-size: 28px;
-	height: 530px;
+	height: 80vh;
 	resize: none;
 	width: 100%;
 	z-index: 999;
@@ -155,7 +155,7 @@ div.spacer {clear:both; display:block; height:10px;}
 	}
 
 	#text-area {
-		height: 930px;
+		height: 85vh;
 	}
 }
 
