@@ -22,6 +22,7 @@ $(document).ready(function(){
 	// Check radio button value
 	if (itemValue !== null) {
 		if (itemValue === "1") {
+			$("#text-area").removeClass("lines");
 			wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1" checked="checked"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"> <label for="opt2">Visa rader</label>';
 		} else {
 			$("#text-area").addClass("lines");
