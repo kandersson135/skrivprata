@@ -21,7 +21,6 @@ $(document).ready(function(){
   });
 
   // Clear button click
-	// Clear button click
 	$('#clear-btn').click(function() {
 	  swal({
 	    title: "Är du säker?",
@@ -41,7 +40,6 @@ $(document).ready(function(){
 	  });
 	});
 
-
   // Help button click
   var wrapper = document.createElement('div');
 	wrapper.innerHTML = '<p>Version: 1.0.4.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
@@ -57,22 +55,34 @@ $(document).ready(function(){
 	$('#text-area').keypress(function(e) {
 	  var text = $('#text-area').val();
 
-	  if (e.keyCode === 32) {
-	    // Mellanslag → läs sista ordet
+	  if (e.keyCode === 32 || e.keyCode === 13) {
+	    // Mellanslag (32) eller Enter (13)
 	    responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-
-	  } else if (e.keyCode === 13) {
-	    // Enter → läs sista raden
-	    var lines = text.split(/\n/);
-	    var lastLine = lines[lines.length - 1].trim();
-	    if (lastLine.length > 0) {
-	      responsiveVoice.speak(lastLine.toLowerCase(), 'Swedish Female');
-	    }
 	  } else {
-	    // Vanliga bokstäver/tecken → läs tecknet
+	    // Vanliga bokstäver/tecken
 	    responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
 	  }
 	});
+
+	// $('#text-area').keypress(function(e) {
+	//   var text = $('#text-area').val();
+	//
+	//   if (e.keyCode === 32) {
+	//     // Mellanslag → läs sista ordet
+	//     responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
+	//
+	//   } else if (e.keyCode === 13) {
+	//     // Enter → läs sista raden
+	//     var lines = text.split(/\n/);
+	//     var lastLine = lines[lines.length - 1].trim();
+	//     if (lastLine.length > 0) {
+	//       responsiveVoice.speak(lastLine.toLowerCase(), 'Swedish Female');
+	//     }
+	//   } else {
+	//     // Vanliga bokstäver/tecken → läs tecknet
+	//     responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
+	//   }
+	// });
 
 	function lastword(words) {
     var n = words.split(" ");
