@@ -76,12 +76,12 @@ h1 {
   font-size: 48px;
   font-weight: 400;
   text-shadow: 1px 1px rgba(50, 50, 50, 0.2);
-	margin-top: 15px;
+	margin-top: 10px;
 }
 
 /* HEADER */
 #header {display:inline;}
-#header ul {margin-left: 20px; position: relative; top: 15px;}
+#header ul {margin-left: 20px; position: relative; top: 10px;}
 #header ul li {
 	display:inline-block;
 	margin-right: 8px;
