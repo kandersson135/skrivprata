@@ -16,9 +16,36 @@ $(document).ready(function(){
   });
 
   // Settings button click
+	var wrapper = document.createElement('div');
+	var itemValue = localStorage.getItem("option");
+
+	// Check radio button value
+	if (itemValue !== null) {
+		if (itemValue === "1") {
+			wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1" checked="checked"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"> <label for="opt2">Visa rader</label>';
+		} else {
+			$("#text-area").addClass("lines");
+			wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"  checked="checked"> <label for="opt2">Visa rader</label>';
+		}
+	} else {
+		wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1" checked="checked"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"> <label for="opt2">Visa rader</label>';
+	}
+
 	$('#settings-btn').click(function() {
-    swal("Inställningar", "Under konstruktion.");
+		swal({
+    	title: "Inställningar",
+      content: wrapper
+    })
+    .then((willReload) => {
+      if (willReload) {
+        location.reload();
+      }
+    });
   });
+
+	// $('#settings-btn').click(function() {
+  //   swal("Inställningar", "Under konstruktion.");
+  // });
 
   // Clear button click
 	$('#clear-btn').click(function() {
@@ -31,23 +58,23 @@ $(document).ready(function(){
 	    if (willClear) {
 	      $('#text-area').val('');
 	      $('#text-area').focus();
-	      swal("Texten har rensats!", {
-	        icon: "success",
-	        timer: 1500,
-	        buttons: false
-	      });
+	      // swal("Texten har rensats!", {
+	      //   icon: "success",
+	      //   timer: 1500,
+	      //   buttons: false
+	      // });
 	    }
 	  });
 	});
 
   // Help button click
-  var wrapper = document.createElement('div');
-	wrapper.innerHTML = '<p>Version: 1.0.7.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+  var wrapper2 = document.createElement('div');
+	wrapper2.innerHTML = '<p>Version: 1.0.8.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
 		  title: 'Om webbappen',
-		  content: wrapper
+		  content: wrapper2
 		});
   });
 
