@@ -4,7 +4,7 @@
 		<title>Skrivprata</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<meta name="theme-color" content="#00AEEF">
+		<meta name="theme-color" content="#7cd1f9">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="mobile-web-app-capable" content="yes">
@@ -12,30 +12,32 @@
 		<link rel="apple-touch-icon" href="img/webapp-icon.jpg">
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
-		<!-- CSS -->
+		<!-- css -->
 		<link href="css/main.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+		<div id="header-bg">
+			<div class="wrapper">
+				<div id="header">
+					<ul class="left">
+						<li><a href="#" id="speak-btn"><i class="fas fa-volume-up"></i> Läs upp text</a></li>
+						<li><a href="#" id="print-btn"><i class="fas fa-print"></i> Skriv ut</a></li>
+						<li><a href="#" id="clear-btn"><i class="fas fa-trash-alt"></i> Rensa text</a></li>
+						<li><a href="#" id="settings-btn"><i class="fas fa-cog"></i> Inställningar</a></li>
+						<li><a href="#" id="help-btn"><i class="far fa-question-circle"></i> Om</a></li>
+					</ul>
+
+					<h1 class="right">Skrivprata</h1>
+				</div><!-- end header -->
+			</div><!-- end wrapper -->
+		</div><!-- end header-bg -->
+
 		<div class="wrapper">
-      <div id="header">
-				<ul class="left">
-          <li><a href="#" id="speak-btn"><i class="fas fa-volume-up"></i> Läs upp text</a></li>
-					<li><a href="#" id="print-btn"><i class="fas fa-print"></i> Skriv ut</a></li>
-					<li><a href="#" id="clear-btn"><i class="fas fa-trash-alt"></i> Rensa text</a></li>
-					<li><a href="#" id="settings-btn"><i class="fas fa-cog"></i> Inställningar</a></li>
-					<li><a href="#" id="help-btn"><i class="far fa-question-circle"></i> Om</a></li>
-				</ul>
-
-				<h1 class="right">Skrivprata</h1>
-			</div><!-- END HEADER -->
-
-			<div class="spacer"></div>
-
 			<!-- <textarea id="text-area" autocorrect="off" autocapitalize="characters"></textarea> -->
 			<textarea id="text-area" autocorrect="off"></textarea>
-		</div><!-- END WRAPPER -->
+		</div><!-- end wrapper  -->
 
-    <!-- JS -->
+    <!-- js -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/sweetalert.min.js"></script>
     <script src="js/fontawesome.all.js"></script>

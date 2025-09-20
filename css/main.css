@@ -60,35 +60,41 @@ ol {margin:10px 0 20px 25px;}
 /* WRAPPER */
 .wrapper {margin:0 auto; margin-top:20px; max-width:1170px; width:90%;}
 
+#header-bg {
+	background: #7cd1f9;
+	display: block;
+	height: 100px;
+	margin-top: -20px;
+}
+
 h1 {
   color: #fff;
   font-family: 'Londrina Solid', cursive;
   font-size: 48px;
   font-weight: 400;
   text-shadow: 1px 1px rgba(50, 50, 50, 0.2);
+	margin-top: 30px;
 }
 
 /* HEADER */
 #header {display:inline;}
-#header ul {margin-left: 20px; position: relative; top: 19px;}
+#header ul {margin-left: 20px; position: relative; top: 30px;}
 #header ul li {
 	display:inline-block;
-	margin-right: 6px;
+	margin-right: 8px;
 
 }
 #header ul li a {
-	background: #7cd1f9;
-	border: 1px solid rgba(50, 50, 50, 0.1);
-	border-bottom: 0;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
+	background: #63C9F8;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	box-shadow: 2px 2px #37B9F6;
 	color:#fff;
 	font-size: 16px;
 	padding: 10px 14px;
-	transition-duration:0.3s;
 }
 #header ul li a:hover {background: #63C9F8;}
-#header ul li a:active {position: relative; top: 1px;}
+#header ul li a:active {box-shadow: none; position: relative; top: 2px; left: 2px;}
 
 /* TEXTAREA */
 #text-area {
@@ -107,7 +113,7 @@ h1 {
 	*/
 	font-family:'Patrick Hand', cursive;
 	font-size: 28px;
-	height: 80vh;
+	height: 75vh;
 	resize: none;
 	width: 100%;
 	z-index: 999;
