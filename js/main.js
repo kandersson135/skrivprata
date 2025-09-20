@@ -6,7 +6,10 @@ $(document).ready(function(){
 	// Speak button click
 	$('#speak-btn').click(function() {
 		var text = $('#text-area').val();
-		responsiveVoice.speak(text.toLowerCase(), 'Swedish Female');
+		//responsiveVoice.speak(text.toLowerCase(), 'Swedish Female');
+		responsiveVoice.speak(text.toLowerCase(), "Swedish Female", {
+			rate: 0.8
+		});
 		$('#text-area').focus();
   });
 
@@ -102,15 +105,37 @@ $(document).ready(function(){
   });
 
 	// Textarea speak on key press
-	$('#text-area').keypress(function(e) {
-	  var text = $('#text-area').val();
+	// $('#text-area').keypress(function(e) {
+	//   var text = $('#text-area').val();
+	//
+	//   if (e.keyCode === 32 || e.keyCode === 13) {
+	//     // Mellanslag (32) eller Enter (13)
+	//     responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
+	//   } else {
+	//     // Vanliga bokstäver/tecken
+	//     responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
+	//   }
+	// });
 
-	  if (e.keyCode === 32 || e.keyCode === 13) {
-	    // Mellanslag (32) eller Enter (13)
-	    responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-	  } else {
-	    // Vanliga bokstäver/tecken
-	    responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
+	$('#text-area').on('keydown', function(e) {
+	  var text = $(this).val();
+
+	  if (e.key === " " || e.key === "Enter") {
+	    // Mellanslag eller Enter → spela upp senaste ordet med responsiveVoice
+	    //responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
+			responsiveVoice.speak(lastword(text).toLowerCase(), "Swedish Female", {
+				rate: 0.8
+			});
+	  } else if (e.key.length === 1) {
+	    // Vanliga tecken → spela bokstavsljud
+
+	    let letter = e.key.toLowerCase();
+
+	    // Hantera svenska tecken
+	    if ("abcdefghijklmnopqrstuvwxyzåäö".includes(letter)) {
+	      let audio = new Audio('audio/' + letter + '.wav');
+	      audio.play();
+	    }
 	  }
 	});
 
