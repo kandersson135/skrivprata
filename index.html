@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Skrivprata 2</title>
+		<title>Skrivprata</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="theme-color" content="#00AEEF">
@@ -13,17 +13,17 @@
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
 		<!-- CSS -->
-		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<link href="css/main.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="wrapper">
       <div id="header">
 				<ul class="left">
-          <li><a href="#" id="speak-btn"><i class="fas fa-volume-up"></i></a></li>
-					<li><a href="#" id="print-btn"><i class="fas fa-print"></i></a></li>
-					<li><a href="#" id="clear-btn"><i class="fas fa-trash-alt"></i></a></li>
-					<li><a href="#" id="settings-btn"><i class="fas fa-cog"></i></a></li>
-					<li><a href="#" id="help-btn"><i class="far fa-question-circle"></i></a></li>
+          <li><a href="#" id="speak-btn"><i class="fas fa-volume-up"></i> Läs upp text</a></li>
+					<li><a href="#" id="print-btn"><i class="fas fa-print"></i> Skriv ut</a></li>
+					<li><a href="#" id="clear-btn"><i class="fas fa-trash-alt"></i> Rensa text</a></li>
+					<li><a href="#" id="settings-btn"><i class="fas fa-cog"></i> Inställningar</a></li>
+					<li><a href="#" id="help-btn"><i class="far fa-question-circle"></i> Om</a></li>
 				</ul>
 
 				<h1 class="right">Skrivprata</h1>
@@ -31,24 +31,7 @@
 
 			<div class="spacer"></div>
 
-			<!--
-      <div class="paper">
-        <div class="paper-content">
-          <textarea autofocus></textarea>
-        </div>
-      </div>
-
-			<div class="spacer"></div>
-			-->
-
-			<textarea id="texty" autocorrect="off" autocapitalize="characters"></textarea>
-
-      <!--
-      <div class="spacer"></div>
-
-      <div class="card">
-        <textarea id="textarea" autofocus></textarea>
-      </div>-->
+			<textarea id="text-area" autocorrect="off" autocapitalize="characters"></textarea>
 		</div><!-- END WRAPPER -->
 
     <!-- JS -->
