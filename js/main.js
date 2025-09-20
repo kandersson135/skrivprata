@@ -8,7 +8,7 @@ $(document).ready(function(){
 		var text = $('#text-area').val();
 		//responsiveVoice.speak(text.toLowerCase(), 'Swedish Female');
 		responsiveVoice.speak(text.toLowerCase(), "Swedish Female", {
-			rate: 0.8
+			rate: speechRate
 		});
 		$('#text-area').focus();
   });
@@ -19,33 +19,64 @@ $(document).ready(function(){
   });
 
   // Settings button click
-	var wrapper = document.createElement('div');
-	var itemValue = localStorage.getItem("option");
+	// Hämta sparade inställningar
+	var lineOption = localStorage.getItem("option") || "2"; // 1=dölj, 2=visa
+	var speechRate = localStorage.getItem("speechRate") || 1;
 
-	// Check radio button value
-	if (itemValue !== null) {
-		if (itemValue === "1") {
-			$("#text-area").removeClass("lines");
-			wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1" checked="checked"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"> <label for="opt2">Visa rader</label>';
-		} else {
-			$("#text-area").addClass("lines");
-			wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"  checked="checked"> <label for="opt2">Visa rader</label>';
-		}
+	// Bygg wrapper för SweetAlert
+	var wrapper = document.createElement('div');
+
+	// Radio-knappar HTML
+	wrapper.innerHTML = `
+	<p>Välj om du vill visa eller dölja textrader</p>
+	<input type="radio" name="lines" id="opt1" value="1" ${lineOption === "1" ? "checked" : ""}>
+	<label for="opt1">Dölj rader</label>
+	&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="lines" id="opt2" value="2" ${lineOption === "2" ? "checked" : ""}>
+	<label for="opt2">Visa rader</label>
+
+	<br><br><hr color="#ddd"><br>
+
+	<p>Rösthastighet</p>
+	<input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
+	<span id="rateValue">${speechRate}</span>
+	`;
+
+	// Settings-knapp
+	$('#settings-btn').click(function() {
+	  swal({
+	    title: "Inställningar",
+	    content: wrapper
+	  });
+
+	  // Radio-knappar direktkoppling
+	  $('#opt1').on('change', function(){
+	      localStorage.setItem("option", "1");
+	      $("#text-area").removeClass("lines");
+	  });
+
+	  $('#opt2').on('change', function(){
+	      localStorage.setItem("option", "2");
+	      $("#text-area").addClass("lines");
+	  });
+
+	  // Slider för hastighet
+	  $('#rateSlider').on('input change', function() {
+	    let newRate = $(this).val();
+	    $('#rateValue').text(newRate);
+	    localStorage.setItem("speechRate", newRate);
+	    speechRate = newRate;
+	  });
+	});
+
+	// Vid sidladdning, applicera sparade inställningar
+	if(lineOption === "1") {
+	  $("#text-area").removeClass("lines");
 	} else {
-		wrapper.innerHTML = '<p>Välj om du vill visa eller dölja textrader</p><input type="radio" onclick="localStorage.setItem(`option`, `1`);" name="lines" id="opt1" value="1" checked="checked"> <label for="opt1">Dölj rader</label> &nbsp;&nbsp;&nbsp; <input type="radio" onclick="localStorage.setItem(`option`, `2`);" name="lines" id="opt2" value="2"> <label for="opt2">Visa rader</label>';
+	  $("#text-area").addClass("lines");
 	}
 
-	$('#settings-btn').click(function() {
-		swal({
-    	title: "Inställningar",
-      content: wrapper
-    })
-    .then((willReload) => {
-      if (willReload) {
-        location.reload();
-      }
-    });
-  });
+
 
 	// $('#settings-btn').click(function() {
   //   swal("Inställningar", "Under konstruktion.");
@@ -124,7 +155,7 @@ $(document).ready(function(){
 	    // Mellanslag eller Enter → spela upp senaste ordet med responsiveVoice
 	    //responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
 			responsiveVoice.speak(lastword(text).toLowerCase(), "Swedish Female", {
-				rate: 0.8
+				rate: speechRate
 			});
 	  } else if (e.key.length === 1) {
 	    // Vanliga tecken → spela bokstavsljud
