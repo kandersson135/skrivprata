@@ -57,8 +57,21 @@ $(document).ready(function(){
 	  })
 	  .then((willClear) => {
 	    if (willClear) {
-	      $('#text-area').val('');
-	      $('#text-area').focus();
+			  const $txt = $('#text-area');
+			  let val = $txt.val();
+			  let i = val.length;
+
+			  const interval = setInterval(function(){
+			    if(i <= 0){
+			      clearInterval(interval);
+			      $txt.val('');
+			      $txt.focus();
+			      return;
+			    }
+			    $txt.val(val.slice(0,i));
+			    i--;
+			  }, 10); // 10ms mellan varje bokstav
+
 	      // swal("Texten har rensats!", {
 	      //   icon: "success",
 	      //   timer: 1500,
@@ -70,7 +83,7 @@ $(document).ready(function(){
 
   // Help button click
   var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = '<p>Version: 1.0.8.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper2.innerHTML = '<p>Version: 1.0.9.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
