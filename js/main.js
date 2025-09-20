@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+	// Setting text-area focus on page load
+	$('#text-area').focus();
+
 	// Speak button click
 	$('#speak-btn').click(function() {
 		var text = $('#text-area').val();
