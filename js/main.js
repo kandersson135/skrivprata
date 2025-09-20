@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   // Help button click
   var wrapper = document.createElement('div');
-	wrapper.innerHTML = '<p>Version: 1.0.4.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper.innerHTML = '<p>Version: 1.0.6.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
