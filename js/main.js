@@ -61,11 +61,20 @@ $(document).ready(function(){
 			  let val = $txt.val();
 			  let i = val.length;
 
+				// spela ljudet
+			  const audio = new Audio('audio/eraser.mp3');
+			  audio.play();
+				audio.loop = true;
+
 			  const interval = setInterval(function(){
 			    if(i <= 0){
 			      clearInterval(interval);
 			      $txt.val('');
 			      $txt.focus();
+
+						// stoppa ljudet direkt när vi är klara
+			      audio.pause();
+			      audio.currentTime = 0; // hoppa tillbaka till början
 			      return;
 			    }
 			    $txt.val(val.slice(0,i));
