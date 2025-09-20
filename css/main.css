@@ -144,6 +144,21 @@ div.spacer {clear:both; display:block; height:10px;}
   #text-area { border: none; box-shadow: none; width: 100%; height: 842px; visibility: visible; -webkit-print-color-adjust: exact;}
 }
 
+/* Media query för iPad i portrait-läge */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait) {
+
+  #header h1 {
+		display: none;
+	}
+
+	#text-area {
+		height: 930px;
+	}
+}
+
 /*
 https://fivera.net/paper-text-area-created-with-css-only-editable-example/
 https://codepen.io/fivera/pen/RPyReX
