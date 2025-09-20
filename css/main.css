@@ -65,7 +65,9 @@ ol {margin:10px 0 20px 25px;}
 	box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.2);
 	display: block;
 	height: 100px;
-	margin-top: -20px;
+	position: fixed;
+	left:0;
+	right: 0;
 }
 
 h1 {
@@ -74,12 +76,12 @@ h1 {
   font-size: 48px;
   font-weight: 400;
   text-shadow: 1px 1px rgba(50, 50, 50, 0.2);
-	margin-top: 30px;
+	margin-top: 15px;
 }
 
 /* HEADER */
 #header {display:inline;}
-#header ul {margin-left: 20px; position: relative; top: 30px;}
+#header ul {margin-left: 20px; position: relative; top: 15px;}
 #header ul li {
 	display:inline-block;
 	margin-right: 8px;
@@ -117,6 +119,7 @@ h1 {
 	/* width: 100%; */
 	display: block;
 	margin: 0 auto;
+	margin-top: 110px;
 	margin-bottom: 20px;
 	width: 70%;
 	z-index: 999;
