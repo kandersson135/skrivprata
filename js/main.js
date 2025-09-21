@@ -125,7 +125,7 @@ $(document).ready(function(){
 
   // Help button click
   var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = '<p>Version: 1.0.9.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper2.innerHTML = '<p>Version: 0.1.2.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
