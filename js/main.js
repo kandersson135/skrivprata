@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 	<br><br><hr color="#ddd"><br>
 
-	<p>Rösthastighet</p>
+	<p>Rösthastighet för talsyntes</p>
 	<input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
 	<span id="rateValue">${speechRate}</span>
 	`;
