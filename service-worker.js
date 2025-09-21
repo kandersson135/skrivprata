@@ -71,7 +71,17 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+      if (response) {
+        console.log("Hämtat från cache:", event.request.url);
+        return response;
+      }
+      // Försök hämta från nätverket, om det misslyckas, returnera t.ex. index.html
+      return fetch(event.request).catch(() => {
+        // fallback: index.html för SPA (single page app)
+        if (event.request.mode === 'navigate') {
+          return caches.match('index.html');
+        }
+      });
     })
   );
 });
