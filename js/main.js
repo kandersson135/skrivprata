@@ -2,6 +2,14 @@ $(document).ready(function(){
 	// Setting text-area focus on page load
 	$('#text-area').focus();
 
+	// Save text to localStorage
+	$('#text-area').on('input', function() {
+	  localStorage.setItem('skrivprata-text', $(this).val());
+	});
+
+	// Fetch text from localStorage
+	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
+
 	// Speak button click
 	$('#speak-btn').click(function() {
 		var text = $('#text-area').val();
@@ -93,6 +101,8 @@ $(document).ready(function(){
 			  const $txt = $('#text-area');
 			  let val = $txt.val();
 			  let i = val.length;
+
+				localStorage.removeItem('skrivprata-text');
 
 				// spela ljudet
 			  const audio = new Audio('audio/eraser.mp3');
