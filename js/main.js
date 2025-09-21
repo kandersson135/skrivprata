@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 	    // Hantera svenska tecken
 	    if ("abcdefghijklmnopqrstuvwxyzåäö".includes(letter)) {
-	      let audio = new Audio('audio/' + letter + '.wav');
+	      let audio = new Audio('audio/' + letter + '.mp3');
 	      audio.play();
 	    }
 	  }

@@ -47,5 +47,12 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=DzLv0ZPv"></script>
     <script src="js/ios-hack.js"></script>
     <script src="js/main.js"></script>
+		<script>
+			if ("serviceWorker" in navigator) {
+			  navigator.serviceWorker.register("/service-worker.js")
+			    .then(() => console.log("Service Worker registrerad!"))
+			    .catch(err => console.error("SW misslyckades:", err));
+			}
+		</script>
 	</body>
 </html>
