@@ -88,14 +88,13 @@ ol {margin:10px 0 20px 25px;}
 }
 #header ul li a {
 	background: #63C9F8;
-	border-top-right-radius: 8px;
-	border-bottom-left-radius: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 	box-shadow: 2px 2px #37B9F6;
 	color:#fff;
 	font-size: 16px;
 	padding: 10px 14px;
 }
-#header ul li a:hover {background: #63C9F8;}
 #header ul li a:active {box-shadow: none; position: relative; top: 2px; left: 2px;}
 
 /* TEXTAREA */
