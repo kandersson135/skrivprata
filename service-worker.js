@@ -2,7 +2,6 @@ const CACHE_NAME = "skrivprata-v1";
 
 // Lägg in alla resurser som ska cachas här
 const FILES_TO_CACHE = [
-  "./",    // startsidan
   "index.html",
   "css/main.css",
   "js/main.js",
