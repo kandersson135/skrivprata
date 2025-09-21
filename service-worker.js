@@ -10,7 +10,7 @@ const FILES_TO_CACHE = [
   "js/sweetalert.min.js",
   "js/fontawesome.all.js",
   "img/favicon.ico",
-  "img/webapp-icon.png",
+  "img/webapp-icon.jpg",
   // Lägg till alla dina ljudfiler
   "audio/a.mp3",
   "audio/b.mp3",
