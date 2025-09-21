@@ -102,6 +102,7 @@ $(document).ready(function(){
 			  let val = $txt.val();
 			  let i = val.length;
 
+				// Remove text from localStorage
 				localStorage.removeItem('skrivprata-text');
 
 				// spela ljudet
