@@ -158,6 +158,7 @@ $(document).ready(function(){
 	//   }
 	// });
 
+	// playbackRate for letter
 	function playLetterSound(letter, rate = 1) {
 	  fetch('audio/' + letter + '.mp3')
 	    .then(res => res.arrayBuffer())
@@ -172,7 +173,6 @@ $(document).ready(function(){
 	      });
 	    });
 	}
-
 
 	$('#text-area').on('keydown', function(e) {
 	  var text = $(this).val();
@@ -190,9 +190,9 @@ $(document).ready(function(){
 
 	    // Hantera svenska tecken
 	    if ("abcdefghijklmnopqrstuvwxyzåäö".includes(letter)) {
-	      // let audio = new Audio('audio/' + letter + '.mp3');
-	      // audio.play();
-				playLetterSound(letter, speechRate);
+	      let audio = new Audio('audio/' + letter + '.mp3');
+	      audio.play();
+				//playLetterSound(letter, speechRate);
 	    }
 	  }
 	});
