@@ -158,6 +158,22 @@ $(document).ready(function(){
 	//   }
 	// });
 
+	function playLetterSound(letter, rate = 1) {
+	  fetch('audio/' + letter + '.mp3')
+	    .then(res => res.arrayBuffer())
+	    .then(buf => {
+	      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+	      audioCtx.decodeAudioData(buf, (decoded) => {
+	        const source = audioCtx.createBufferSource();
+	        source.buffer = decoded;
+	        source.playbackRate.value = rate; // ändra hastighet här
+	        source.connect(audioCtx.destination);
+	        source.start(0);
+	      });
+	    });
+	}
+
+
 	$('#text-area').on('keydown', function(e) {
 	  var text = $(this).val();
 
@@ -174,8 +190,9 @@ $(document).ready(function(){
 
 	    // Hantera svenska tecken
 	    if ("abcdefghijklmnopqrstuvwxyzåäö".includes(letter)) {
-	      let audio = new Audio('audio/' + letter + '.mp3');
-	      audio.play();
+	      // let audio = new Audio('audio/' + letter + '.mp3');
+	      // audio.play();
+				playLetterSound(letter, speechRate);
 	    }
 	  }
 	});
