@@ -158,7 +158,7 @@ $(document).ready(function(){
 	//   }
 	// });
 
-	// playbackRate for letter
+	// playbackRate for letters
 	function playLetterSound(letter, rate = 1) {
 	  fetch('audio/' + letter + '.mp3')
 	    .then(res => res.arrayBuffer())
