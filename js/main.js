@@ -11,14 +11,23 @@ $(document).ready(function(){
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
 
 	// Speak button click
+	// $('#speak-btn').click(function() {
+	// 	var text = $('#text-area').val();
+	// 	//responsiveVoice.speak(text.toLowerCase(), 'Swedish Female');
+	// 	responsiveVoice.speak(text.toLowerCase(), "Swedish Female", {
+	// 		rate: speechRate
+	// 	});
+	// 	$('#text-area').focus();
+  // });
+
+	// Speak button click
 	$('#speak-btn').click(function() {
-		var text = $('#text-area').val();
-		//responsiveVoice.speak(text.toLowerCase(), 'Swedish Female');
-		responsiveVoice.speak(text.toLowerCase(), "Swedish Female", {
-			rate: speechRate
-		});
-		$('#text-area').focus();
-  });
+	  let text = $('#text-area').val();
+	  if (text.trim() !== "") {
+	    speakText(text.toLowerCase(), speechRate); // använder vår wrapper
+	  }
+	  $('#text-area').focus();
+	});
 
   // Print button click
 	$('#print-btn').click(function() {
@@ -83,12 +92,6 @@ $(document).ready(function(){
 	  $("#text-area").addClass("lines");
 	}
 
-
-
-	// $('#settings-btn').click(function() {
-  //   swal("Inställningar", "Under konstruktion.");
-  // });
-
   // Clear button click
 	$('#clear-btn').click(function() {
 	  swal({
@@ -124,19 +127,13 @@ $(document).ready(function(){
 			    $txt.val(val.slice(0,i));
 			    i--;
 			  }, 10); // 10ms mellan varje bokstav
-
-	      // swal("Texten har rensats!", {
-	      //   icon: "success",
-	      //   timer: 1500,
-	      //   buttons: false
-	      // });
 	    }
 	  });
 	});
 
   // Help button click
   var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = '<p>Version: 1.0.9.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper2.innerHTML = '<p>Version: 1.1.0.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
@@ -144,19 +141,6 @@ $(document).ready(function(){
 		  content: wrapper2
 		});
   });
-
-	// Textarea speak on key press
-	// $('#text-area').keypress(function(e) {
-	//   var text = $('#text-area').val();
-	//
-	//   if (e.keyCode === 32 || e.keyCode === 13) {
-	//     // Mellanslag (32) eller Enter (13)
-	//     responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-	//   } else {
-	//     // Vanliga bokstäver/tecken
-	//     responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
-	//   }
-	// });
 
 	// playbackRate for letters
 	function playLetterSound(letter, rate = 1) {
@@ -189,6 +173,26 @@ $(document).ready(function(){
 	  return words[words.length - 1];
 	}
 
+	function speakText(text, rate = 1) {
+	  if (typeof responsiveVoice !== "undefined" && responsiveVoice.speak) {
+	    // Försök med responsiveVoice
+	    responsiveVoice.speak(text, "Swedish Female", { rate: rate });
+	  } else if ('speechSynthesis' in window) {
+	    // Fallback till inbyggd talsyntes
+	    let utterance = new SpeechSynthesisUtterance(text);
+	    utterance.lang = "sv-SE"; // svenska
+	    utterance.rate = rate;    // hastighet
+	    // välj första kvinnliga rösten om möjligt
+	    let voices = speechSynthesis.getVoices();
+	    let female = voices.find(v => v.lang === "sv-SE" && v.name.toLowerCase().includes("female"));
+	    if (female) utterance.voice = female;
+
+	    speechSynthesis.speak(utterance);
+	  } else {
+	    console.warn("Ingen talsyntes tillgänglig.");
+	  }
+	}
+
 	$('#text-area').on('keydown', function(e) {
 	  //var text = $(this).val();
 		let textArea = this;
@@ -197,18 +201,12 @@ $(document).ready(function(){
 			let word = getCurrentWord(textArea);
 
 			if (word) {
-	      responsiveVoice.speak(word.toLowerCase(), "Swedish Female", {
-	        rate: speechRate
-	      });
+	      // responsiveVoice.speak(word.toLowerCase(), "Swedish Female", {
+	      //   rate: speechRate
+	      // });
+
+				speakText(word.toLowerCase(), speechRate);
 	    }
-
-	    // Mellanslag eller Enter → spela upp senaste ordet med responsiveVoice
-			//responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-
-			// responsiveVoice.speak(lastword(text).toLowerCase(), "Swedish Female", {
-			// 	rate: speechRate
-			// });
-
 	  } else if (e.key.length === 1) {
 	    // Vanliga tecken → spela bokstavsljud
 
@@ -222,29 +220,4 @@ $(document).ready(function(){
 	    }
 	  }
 	});
-
-	// $('#text-area').keypress(function(e) {
-	//   var text = $('#text-area').val();
-	//
-	//   if (e.keyCode === 32) {
-	//     // Mellanslag → läs sista ordet
-	//     responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-	//
-	//   } else if (e.keyCode === 13) {
-	//     // Enter → läs sista raden
-	//     var lines = text.split(/\n/);
-	//     var lastLine = lines[lines.length - 1].trim();
-	//     if (lastLine.length > 0) {
-	//       responsiveVoice.speak(lastLine.toLowerCase(), 'Swedish Female');
-	//     }
-	//   } else {
-	//     // Vanliga bokstäver/tecken → läs tecknet
-	//     responsiveVoice.speak(String.fromCharCode(e.which).toLowerCase(), 'Swedish Female');
-	//   }
-	// });
-
-	function lastword(words) {
-    var n = words.split(" ");
-    return n[n.length - 1];
-	}
 });
