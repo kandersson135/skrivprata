@@ -174,15 +174,41 @@ $(document).ready(function(){
 	    });
 	}
 
+	// get current word position
+	function getCurrentWord(textarea) {
+	  // markörens position
+	  let pos = textarea.selectionStart;
+
+	  // ta texten fram till markören
+	  let beforeCursor = textarea.value.substring(0, pos);
+
+	  // splitta på mellanslag eller radbrytning
+	  let words = beforeCursor.trim().split(/\s+/);
+
+	  // returnera sista ordet innan markören
+	  return words[words.length - 1];
+	}
+
 	$('#text-area').on('keydown', function(e) {
-	  var text = $(this).val();
+	  //var text = $(this).val();
+		let textArea = this;
 
 	  if (e.key === " " || e.key === "Enter") {
+			let word = getCurrentWord(textArea);
+
+			if (word) {
+	      responsiveVoice.speak(word.toLowerCase(), "Swedish Female", {
+	        rate: speechRate
+	      });
+	    }
+
 	    // Mellanslag eller Enter → spela upp senaste ordet med responsiveVoice
-	    //responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
-			responsiveVoice.speak(lastword(text).toLowerCase(), "Swedish Female", {
-				rate: speechRate
-			});
+			//responsiveVoice.speak(lastword(text).toLowerCase(), 'Swedish Female');
+
+			// responsiveVoice.speak(lastword(text).toLowerCase(), "Swedish Female", {
+			// 	rate: speechRate
+			// });
+
 	  } else if (e.key.length === 1) {
 	    // Vanliga tecken → spela bokstavsljud
 
