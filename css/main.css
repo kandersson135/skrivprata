@@ -81,21 +81,27 @@ ol {margin:10px 0 20px 25px;}
 
 /* HEADER */
 #header {display:inline;}
-#header ul {margin-left: 20px; position: relative; top: 10px;}
+#header ul {margin-left: 20px;}
 #header ul li {
 	display:inline-block;
 	margin-right: 8px;
 }
-#header ul li a {
+#header ul li button {
 	background: #63C9F8;
 	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px;
+	border: 0;
 	box-shadow: 2px 2px #37B9F6;
 	color:#fff;
+	font-family:'Open Sans', sans-serif;
 	font-size: 16px;
 	padding: 10px 14px;
+	cursor: pointer;
+	display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-#header ul li a:active {box-shadow: none; position: relative; top: 2px; left: 2px;}
+#header ul li button:active {box-shadow: none; position: relative; top: 2px; left: 2px;}
 
 /* TEXTAREA */
 #text-area {
