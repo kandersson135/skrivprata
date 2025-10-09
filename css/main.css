@@ -79,6 +79,8 @@ ol {margin:10px 0 20px 25px;}
 	margin-top: 10px;
 }
 
+#header h1 a {color: #fff;}
+
 /* HEADER */
 #header {display:inline;}
 #header ul {margin-left: 20px;}
@@ -132,6 +134,10 @@ ol {margin:10px 0 20px 25px;}
 .lines {
 	background-attachment: local;
   background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #f1f1f1 36px, #f1f1f1 38px);
+}
+
+#about-text {
+	text-align: left;
 }
 
 /* SWEET-ALERT */
