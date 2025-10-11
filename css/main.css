@@ -142,8 +142,15 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
 #tool-header {
   background-color: #63C9F8;
   border-bottom: 1px solid #0BAAF4;
+  background-color: #6AD19E; /* ljus mintgrön */
+  border-bottom: 1px solid #27AE60; /* klarare grön */
+  background-color: #F9C784; /* varm ljusorange */
+  border-bottom: 1px solid #F48C06; /* klar orange */
+  background-color: #A4D0F5; /* ljus blågrå ton */
+  border-bottom: 1px solid #1E90FF; /* dodger blue */
+	background-color: #BFA2DB; /* pastellila */
+  border-bottom: 1px solid #8E44AD; /* djup lila */
 	box-shadow: 1px 1px 2px rgba(100, 100, 100, 0.2);
-
   padding: 4px 10px;
 	font-family: 'Londrina Solid', sans-serif;
   position: fixed;
@@ -175,12 +182,12 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
 }
 
 .tool-buttons button:hover {
-  background-color: #37B9F6;
+  background-color: #AF89D1;
   border-radius: 4px;
 }
 
 .tool-buttons button:active {
-  background-color: #0BAAF4;
+  background-color: #9868C4;
 }
 
 /* footer */
@@ -254,6 +261,10 @@ footer p {
   border-right-width: 2px;
 }
 
+.swal-button {background-color: #BFA2DB; transition: background 0.2s ease;}
+.swal-button:hover {background-color: #AF89D1 !important;}
+.swal-button--cancel {background-color: #efefef;}
+.swal-button--cancel:hover {background-color: #dfdfdf !important;}
 .swal-button:focus {box-shadow:none;}
 
 /* Scroll container styling (applied to wrapper) */
@@ -274,11 +285,10 @@ footer p {
   border-radius: 4px;
 }
 
-..settings-wrapper {
+.settings-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-family: 'Londrina Solid', sans-serif;
   font-size: 16px;
 }
 
@@ -286,7 +296,7 @@ footer p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 0px 0 16px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -322,30 +332,30 @@ footer p {
   appearance: none;
   width: 18px;
   height: 18px;
-  background: #63C9F8;
+  background: #BFA2DB;
   border-radius: 50%;
-  border: 2px solid #0BAAF4;
+  border: 2px solid #AF89D1;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 #rateSlider::-webkit-slider-thumb:hover {
-  background: #0BAAF4;
+  background: #AF89D1;
 }
 
 /* Firefox */
 #rateSlider::-moz-range-thumb {
   width: 18px;
   height: 18px;
-  background: #63C9F8;
+  background: #BFA2DB;
   border-radius: 50%;
-  border: 2px solid #0BAAF4;
+  border: 2px solid #AF89D1;
   cursor: pointer;
 	transition: background 0.3s;
 }
 
 #rateSlider::-moz-range-thumb:hover {
-  background: #0BAAF4;
+  background: #AF89D1;
 }
 
 #rateSlider::-moz-range-track {
@@ -404,7 +414,7 @@ footer p {
 }
 
 .switch input:checked + .slider {
-  background-color: #63C9F8;
+  background-color: #BFA2DB;
 }
 
 .switch input:checked + .slider:before {
