@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 	// Fetch text from localStorage
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
+	updateWordCount();
 
 	// Speak button click
 	// $('#speak-btn').click(function() {
@@ -38,6 +39,7 @@ $(document).ready(function(){
 	// Hämta sparade inställningar
 	var lineOption = localStorage.getItem("option") || "2"; // 1=dölj, 2=visa
 	var speechRate = localStorage.getItem("speechRate") || 1;
+	var spellcheckEnabled = localStorage.getItem("spellcheck") === "true";
 
 	// Bygg wrapper för SweetAlert
 	var wrapper = document.createElement('div');
@@ -51,11 +53,19 @@ $(document).ready(function(){
 	<input type="radio" name="lines" id="opt2" value="2" ${lineOption === "2" ? "checked" : ""}>
 	<label for="opt2">Visa rader</label>
 
-	<br><br><hr color="#ddd"><br>
+	<br><br><br><hr color="#eee"><br><br>
 
 	<p>Rösthastighet för talsyntes</p>
 	<input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
 	<span id="rateValue">${speechRate}</span>
+
+	<br><br><br><hr color="#eee"><br><br>
+
+	<p>Rättstavning</p>
+	<label>
+	  <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
+	  Aktivera rättstavning
+	</label>
 	`;
 
 	// Settings-knapp
@@ -83,6 +93,13 @@ $(document).ready(function(){
 	    localStorage.setItem("speechRate", newRate);
 	    speechRate = newRate;
 	  });
+
+		// Rättstavnings-checkbox
+	  $('#spellcheck-toggle').on('change', function() {
+	    let enabled = $(this).is(':checked');
+	    $('#text-area').attr('spellcheck', enabled);
+	    localStorage.setItem("spellcheck", enabled);
+	  });
 	});
 
 	// Vid sidladdning, applicera sparade inställningar
@@ -91,6 +108,9 @@ $(document).ready(function(){
 	} else {
 	  $("#text-area").addClass("lines");
 	}
+
+	//Applicera rättstavning vid laddning
+	$('#text-area').attr('spellcheck', spellcheckEnabled);
 
   // Clear button click
 	$('#clear-btn').click(function() {
@@ -119,6 +139,8 @@ $(document).ready(function(){
 			      $txt.val('');
 			      $txt.focus();
 
+						updateWordCount();
+
 						// stoppa ljudet direkt när vi är klara
 			      audio.pause();
 			      audio.currentTime = 0; // hoppa tillbaka till början
@@ -133,11 +155,11 @@ $(document).ready(function(){
 
   // Help button click
   var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = '<p>Version: 1.1.0.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper2.innerHTML = '<p>Detta är ett hjälpmedel som läser upp text medan du skriver, ljudar bokstäver och ord, och gör det lättare för elever att träna läs- och skrivinlärning.<br><br>Version: 0.0.8.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
 
 	$('#help-btn').click(function() {
     swal({
-		  title: 'Om webbappen',
+		  title: 'Om verktyget',
 		  content: wrapper2
 		});
   });
@@ -173,6 +195,19 @@ $(document).ready(function(){
 	  return words[words.length - 1];
 	}
 
+	function getCurrentSentence(textarea) {
+	  let pos = textarea.selectionStart;
+	  let text = textarea.value.substring(0, pos);
+
+	  // Dela texten i meningar på skiljetecken (inklusive dem)
+	  let sentences = text.split(/(?<=[.!?])/);
+	  // Trimma bort tomma element
+	  sentences = sentences.map(s => s.trim()).filter(s => s.length > 0);
+
+	  // Returnera sista meningen om den finns
+	  return sentences.length > 0 ? sentences[sentences.length - 1] : "";
+	}
+
 	function speakText(text, rate = 1) {
 	  if (typeof responsiveVoice !== "undefined" && responsiveVoice.speak) {
 	    // Försök med responsiveVoice
@@ -193,11 +228,24 @@ $(document).ready(function(){
 	  }
 	}
 
+	function updateWordCount() {
+	  let text = $('#text-area').val().trim();
+	  let words = text.split(/\s+/).filter(word => word.length > 0);
+	  $('#word-count').text(words.length);
+	}
+
+	// Räkna ord vid varje input-ändring
+	$('#text-area').on('input', function () {
+	  updateWordCount();
+	});
+
+	let justReadSentence = false;
+
 	$('#text-area').on('keydown', function(e) {
-	  //var text = $(this).val();
 		let textArea = this;
 
-	  if (e.key === " " || e.key === "Enter") {
+		// Mellanslag eller enter = läs ord (om vi inte just läst en mening)
+	  if ((e.key === " " || e.key === "Enter") && !justReadSentence) {
 			let word = getCurrentWord(textArea);
 
 			if (word) {
@@ -207,9 +255,22 @@ $(document).ready(function(){
 
 				speakText(word.toLowerCase(), speechRate);
 	    }
-	  } else if (e.key.length === 1) {
-	    // Vanliga tecken → spela bokstavsljud
+	  }
 
+		// Skiljetecken = läs mening
+		else if (e.key === "." || e.key === "!" || e.key === "?") {
+	    let sentence = getCurrentSentence(this);
+	    console.log("Mening som hittades:", sentence);
+	    if (sentence) {
+	      speakText(sentence.toLowerCase(), speechRate);
+				justReadSentence = true;
+	    } else {
+	      console.log("Ingen mening hittades.");
+	    }
+	  }
+
+		// Bokstavsljud
+		else if (e.key.length === 1) {
 	    let letter = e.key.toLowerCase();
 
 	    // Hantera svenska tecken
@@ -218,6 +279,7 @@ $(document).ready(function(){
 	      audio.play();
 				//playLetterSound(letter, speechRate);
 	    }
+			justReadSentence = false;
 	  }
 	});
 });

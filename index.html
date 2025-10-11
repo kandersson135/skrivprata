@@ -16,9 +16,9 @@
 		<link href="css/main.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div id="header-bg">
+		<!-- <div id="header-bg">
 			<div class="wrapper">
-				<div id="header">
+				<header>
 					<ul class="left">
 					  <li><button id="speak-btn"><i class="fas fa-volume-up"></i> Läs upp text</button></li>
 					  <li><button id="print-btn"><i class="fas fa-print"></i> Skriv ut</button></li>
@@ -27,16 +27,37 @@
 					  <li><button id="help-btn"><i class="far fa-question-circle"></i> Om</button></li>
 					</ul>
 					<h1 class="right"><a href="/skrivprata/">Skrivprata</a></h1>
-				</div><!-- end header -->
-			</div><!-- end wrapper -->
-		</div><!-- end header-bg -->
+				</header>
+			</div>
+		</div> -->
 
-		<div class="spacer"></div>
+		<div id="tool-header">
+		  <div class="wrapper">
+		    <div class="toolbar-content">
+		      <div class="tool-title">Skrivprata</div>
+		      <div class="tool-buttons">
+		        <button id="speak-btn" title="Läs upp text"><i class="fas fa-volume-up"></i></button>
+		        <button id="print-btn" title="Skriv ut"><i class="fas fa-print"></i></button>
+		        <button id="clear-btn" title="Rensa text"><i class="fas fa-trash-alt"></i></button>
+		        <button id="settings-btn" title="Inställningar"><i class="fas fa-cog"></i></button>
+		        <button id="help-btn" title="Om verktyget"><i class="far fa-question-circle"></i></button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 		<div class="wrapper">
 			<!-- <textarea id="text-area" autocorrect="off" autocapitalize="characters"></textarea> -->
 			<textarea id="text-area" autocorrect="off" spellcheck="false"></textarea>
 		</div><!-- end wrapper  -->
+
+		<div id="footer-bg">
+			<div class="wrapper">
+				<footer>
+					<p><span id="word-count">0</span> ord</p>
+				</footer>
+			</div><!-- end wrapper -->
+		</div><!-- end footer-bg -->
 
     <!-- js -->
     <script src="js/jquery-3.4.1.min.js"></script>
