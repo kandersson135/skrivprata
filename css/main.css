@@ -186,10 +186,10 @@ footer {
 }
 
 footer p {
-    color: #555;
+    color: #777;
     margin: 0;
     padding: 0;
-		font-size: 12px;
+		font-size: 10px;
 }
 
 /* TEXTAREA */
@@ -221,10 +221,6 @@ footer p {
 .lines {
 	background-attachment: local;
   background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #f1f1f1 36px, #f1f1f1 38px);
-}
-
-#about-text {
-	text-align: left;
 }
 
 /* SWEET-ALERT */

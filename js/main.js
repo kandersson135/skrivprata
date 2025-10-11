@@ -9,7 +9,6 @@ $(document).ready(function(){
 
 	// Fetch text from localStorage
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
-	updateWordCount();
 
 	// Speak button click
 	// $('#speak-btn').click(function() {
@@ -40,8 +39,6 @@ $(document).ready(function(){
 	var lineOption = localStorage.getItem("option") || "2"; // 1=dölj, 2=visa
 	var speechRate = localStorage.getItem("speechRate") || 1;
 	var spellcheckEnabled = localStorage.getItem("spellcheck") === "true";
-
-
 
 	// Bygg wrapper för SweetAlert
 	var wrapper = document.createElement('div');
@@ -94,6 +91,7 @@ $(document).ready(function(){
 	    $('#rateValue').text(newRate);
 	    localStorage.setItem("speechRate", newRate);
 	    speechRate = newRate;
+			updateFooterStats();
 	  });
 
 		// Rättstavnings-checkbox
@@ -111,6 +109,7 @@ $(document).ready(function(){
 		    .attr('autocorrect', enabled ? 'on' : 'off');
 
 		  localStorage.setItem("spellcheck", enabled);
+			updateFooterStats();
 		});
 	});
 
@@ -154,7 +153,7 @@ $(document).ready(function(){
 			      $txt.val('');
 			      $txt.focus();
 
-						updateWordCount();
+						updateFooterStats();
 
 						// stoppa ljudet direkt när vi är klara
 			      audio.pause();
@@ -259,16 +258,34 @@ $(document).ready(function(){
 	  }
 	}
 
-	function updateWordCount() {
-	  let text = $('#text-area').val().trim();
-	  let words = text.split(/\s+/).filter(word => word.length > 0);
-	  $('#word-count').text(words.length);
+	// update footer stats
+	function updateFooterStats() {
+	  let text = $('#text-area').val();
+	  let words = text.trim().split(/\s+/).filter(Boolean).length;
+		let wordss = text.split(/\s+/).filter(word => word.length > 0);
+	  let chars = text.length;
+
+	  //$('#word-count').text(words);
+		$('#word-count').text(wordss.length);
+	  $('#char-count').text(chars);
+
+	  // Enkel uppskattning: ca 3 ord per sekund
+	  $('#read-time').text(Math.ceil(words / 3) + ' sek');
+
+	  // Röst-hastighet (från din inställning)
+	  $('#rate-indicator').text(speechRate + 'x');
+
+	  // Rättstavning-status
+		let spellStatus = localStorage.getItem("spellcheck") === "true" ? 'På' : 'Av';
+		$('#spell-status').text(spellStatus);
 	}
 
-	// Räkna ord vid varje input-ändring
-	$('#text-area').on('input', function () {
-	  updateWordCount();
-	});
+	// Kör varje gång texten ändras
+	$('#text-area').on('input', updateFooterStats);
+
+	// Kör vid sidladdning också (om det finns text kvar från localStorage)
+	updateFooterStats();
+
 
 	let justReadSentence = false;
 
