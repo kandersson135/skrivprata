@@ -274,19 +274,19 @@ footer p {
   border-radius: 4px;
 }
 
-.settings-wrapper {
+..settings-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-family: 'Londrina Solid', sans-serif;
   font-size: 16px;
-	text-align: left;
 }
 
 .setting {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -294,24 +294,121 @@ footer p {
   border-bottom: none;
 }
 
-.setting label {
-  flex: 1;
+.range-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.setting input[type="checkbox"] {
-  width: 40px;
-  height: 20px;
+/* Grundstil */
+#rateSlider {
+  -webkit-appearance: none; /* Ta bort default-stil i Chrome/Safari */
+  width: 150px;
+  height: 6px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
-.setting input[type="range"] {
-  flex: 1;
-  margin-left: 15px;
+#rateSlider:hover {
+  background: #ccc;
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+#rateSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #63C9F8;
+  border-radius: 50%;
+  border: 2px solid #0BAAF4;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#rateSlider::-webkit-slider-thumb:hover {
+  background: #0BAAF4;
+}
+
+/* Firefox */
+#rateSlider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #63C9F8;
+  border-radius: 50%;
+  border: 2px solid #0BAAF4;
+  cursor: pointer;
+	transition: background 0.3s;
+}
+
+#rateSlider::-moz-range-thumb:hover {
+  background: #0BAAF4;
+}
+
+#rateSlider::-moz-range-track {
+  background: #ddd;
+  height: 6px;
+  border-radius: 5px;
+	transition: background 0.3s;
+}
+
+#rateSlider::-moz-range-track:hover {
+  background: #ccc;
 }
 
 #rateValue {
-  margin-left: 10px;
   font-weight: bold;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* 🌟 Toggle switch-stil */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #63C9F8;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(21px);
 }
 
 /* CUSTOM CLASSES

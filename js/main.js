@@ -52,23 +52,34 @@ $(document).ready(function(){
 	<div class="settings-wrapper">
 	  <div class="setting">
 	    <label for="lines-toggle">Visa textrader</label>
-	    <input type="checkbox" id="lines-toggle" ${lineOption === "2" ? "checked" : ""}>
+	    <label class="switch">
+	      <input type="checkbox" id="lines-toggle" ${lineOption === "2" ? "checked" : ""}>
+	      <span class="slider"></span>
+	    </label>
 	  </div>
 
 	  <div class="setting">
 	    <label for="rateSlider">Rösthastighet</label>
-	    <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
-	    <span id="rateValue">${speechRate}</span>
+	    <div class="range-wrapper">
+	      <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
+	      <span id="rateValue">${speechRate}</span>
+	    </div>
 	  </div>
 
 	  <div class="setting">
 	    <label for="spellcheck-toggle">Rättstavning</label>
-	    <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
+	    <label class="switch">
+	      <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
+	      <span class="slider"></span>
+	    </label>
 	  </div>
 
 	  <div class="setting">
 	    <label for="font-toggle">Dyslexivänligt typsnitt</label>
-	    <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
+	    <label class="switch">
+	      <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
+	      <span class="slider"></span>
+	    </label>
 	  </div>
 	</div>
 	`;
