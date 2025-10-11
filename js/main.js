@@ -322,10 +322,9 @@ $(document).ready(function(){
 	function updateFooterStats() {
 	  let text = $('#text-area').val();
 	  let words = text.trim().split(/\s+/).filter(Boolean).length;
-		let wordss = text.split(/\s+/).filter(word => word.length > 0);
 	  let chars = text.length;
 
-		$('#word-count').text(wordss.length);
+		$('#word-count').text(words);
 	  $('#char-count').text(chars);
 	  $('#read-time').text(Math.ceil(words / 3) + ' sek');
 	  $('#rate-indicator').text(speechRate + 'x');
