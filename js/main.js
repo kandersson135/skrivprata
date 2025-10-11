@@ -2,11 +2,6 @@ $(document).ready(function(){
 	// Setting text-area focus on page load
 	$('#text-area').focus();
 
-	// Save text to localStorage
-	$('#text-area').on('input', function() {
-	  localStorage.setItem('skrivprata-text', $(this).val());
-	});
-
 	// Fetch text from localStorage
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
 
@@ -340,13 +335,6 @@ $(document).ready(function(){
 		$('#spell-status').text(spellStatus);
 	}
 
-	// Kör varje gång texten ändras
-	$('#text-area').on('input', updateFooterStats);
-
-	// Kör vid sidladdning också (om det finns text kvar från localStorage)
-	updateFooterStats();
-
-
 	let justReadSentence = false;
 
 	$('#text-area').on('keydown', function(e) {
@@ -389,5 +377,14 @@ $(document).ready(function(){
 	    }
 			justReadSentence = false;
 	  }
+	});
+
+	// Uppdatera footer stats vid pageload
+	updateFooterStats();
+
+	// Kör varje gång texten ändras
+	$('#text-area').on('input', function() {
+	  localStorage.setItem('skrivprata-text', $(this).val());
+		updateFooterStats();
 	});
 });
