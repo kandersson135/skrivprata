@@ -265,14 +265,9 @@ $(document).ready(function(){
 		let wordss = text.split(/\s+/).filter(word => word.length > 0);
 	  let chars = text.length;
 
-	  //$('#word-count').text(words);
 		$('#word-count').text(wordss.length);
 	  $('#char-count').text(chars);
-
-	  // Enkel uppskattning: ca 3 ord per sekund
 	  $('#read-time').text(Math.ceil(words / 3) + ' sek');
-
-	  // Röst-hastighet (från din inställning)
 	  $('#rate-indicator').text(speechRate + 'x');
 
 	  // Rättstavning-status
