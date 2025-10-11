@@ -212,6 +212,15 @@ $(document).ready(function(){
 	  if (typeof responsiveVoice !== "undefined" && responsiveVoice.speak) {
 	    // Försök med responsiveVoice
 	    responsiveVoice.speak(text, "Swedish Female", { rate: rate });
+			// responsiveVoice.speak(text, "Swedish Female", {
+		  //   rate: rate,
+		  //   onstart: function() {
+			// 		$('#speak-btn').html('<i class="fas fa-volume-up"></i>');
+		  //   },
+		  //   onend: function() {
+		  //     $('#speak-btn').html('<i class="fas fa-volume-off"></i>');
+		  //   }
+		  // });
 	  } else if ('speechSynthesis' in window) {
 	    // Fallback till inbyggd talsyntes
 	    let utterance = new SpeechSynthesisUtterance(text);
@@ -221,6 +230,13 @@ $(document).ready(function(){
 	    let voices = speechSynthesis.getVoices();
 	    let female = voices.find(v => v.lang === "sv-SE" && v.name.toLowerCase().includes("female"));
 	    if (female) utterance.voice = female;
+
+			// utterance.onstart = function () {
+	    //   $('#speak-btn').html('<i class="fas fa-volume-up"></i>');
+	    // };
+	    // utterance.onend = function () {
+	    //   $('#speak-btn').html('<i class="fas fa-volume-off"></i>');
+	    // };
 
 	    speechSynthesis.speak(utterance);
 	  } else {
