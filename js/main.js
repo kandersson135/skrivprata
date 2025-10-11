@@ -233,7 +233,7 @@ $(document).ready(function(){
 
 	$('#help-btn').click(function() {
     swal({
-		  title: 'Om verktyget',
+		  title: 'Om Skrivprata',
 		  content: wrapper2
 		});
   });
