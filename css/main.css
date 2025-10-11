@@ -215,12 +215,13 @@ footer {
 footer ul {
 	display: flex;
 	margin: 0;
+	padding: 0;
+	gap: 16px;
 }
 
 footer ul li {
 	color: #777;
 	font-size: 10px;
-	margin-right: 1rem;
 }
 
 footer p {
