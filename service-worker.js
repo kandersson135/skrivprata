@@ -5,7 +5,6 @@ const FILES_TO_CACHE = [
   "index.html",
   "css/main.css",
   "js/main.js",
-  "js/ios-hack.js",
   "js/jquery-3.4.1.min.js",
   "js/sweetalert.min.js",
   "js/fontawesome.all.js",
