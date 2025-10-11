@@ -42,6 +42,13 @@ const FILES_TO_CACHE = [
   "audio/ä.mp3",
   "audio/ö.mp3",
   "audio/eraser.mp3",
+  // fonts
+  "fonts/OpenDyslexic3-Regular.ttf",
+  "fonts/OpenDyslexic3-Regular.woff2",
+  "fonts/OpenDyslexic3-Regular.woff",
+  "fonts/PatrickHand-Regular.ttf",
+  "fonts/PatrickHand-Regular.woff2",
+  "fonts/PatrickHand-Regular.woff",
 ];
 
 // Installera service workern och cacha alla filer

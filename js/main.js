@@ -36,12 +36,16 @@ $(document).ready(function(){
 
   // Settings button click
 	// Hämta sparade inställningar
-	var lineOption = localStorage.getItem("option") || "2"; // 1=dölj, 2=visa
-	var speechRate = localStorage.getItem("speechRate") || 1;
-	var spellcheckEnabled = localStorage.getItem("spellcheck") === "true";
+	let lineOption = localStorage.getItem("option") || "2"; // 1=dölj, 2=visa
+	let speechRate = localStorage.getItem("speechRate") || 1;
+	let spellcheckEnabled = localStorage.getItem("spellcheck") === "true";
+	let dyslexicFontEnabled = localStorage.getItem("dyslexicFont") === "true";
 
 	// Bygg wrapper för SweetAlert
-	var wrapper = document.createElement('div');
+	let wrapper = document.createElement('div');
+	// wrapper.style.maxHeight = '300px';
+  // wrapper.style.overflowY = 'auto';
+  // wrapper.style.paddingRight = '6px';
 
 	// Radio-knappar HTML
 	wrapper.innerHTML = `
@@ -64,6 +68,14 @@ $(document).ready(function(){
 	<label>
 	  <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
 	  Aktivera rättstavning
+	</label>
+
+	<br><br><br><hr color="#eee"><br><br>
+
+	<p>Typsnitt</p>
+	<label>
+	  <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
+	  Använd dyslexivänligt typsnitt
 	</label>
 	`;
 
@@ -111,6 +123,18 @@ $(document).ready(function(){
 		  localStorage.setItem("spellcheck", enabled);
 			updateFooterStats();
 		});
+
+		$('#font-toggle').on('change', function() {
+			dyslexicFontEnabled = $(this).is(':checked');
+
+		  // Byt font
+		  document.documentElement.style.setProperty(
+		    '--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
+		  );
+
+		  // Spara i localStorage
+		  localStorage.setItem("dyslexicFont", dyslexicFontEnabled);
+		});
 	});
 
 	// Vid sidladdning, applicera sparade inställningar
@@ -120,11 +144,17 @@ $(document).ready(function(){
 	  $("#text-area").addClass("lines");
 	}
 
-	//Applicera rättstavning vid laddning
+	// Applicera rättstavning vid sidladdning
 	//$('#text-area').attr('spellcheck', spellcheckEnabled);
 	$('#text-area')
   .attr('spellcheck', spellcheckEnabled)
   .attr('autocorrect', spellcheckEnabled ? 'on' : 'off');
+
+	// Applicera font vid sidladdning
+	document.documentElement.style.setProperty(
+		'--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
+	);
+	$('#font-toggle').prop('checked', dyslexicFontEnabled);
 
   // Clear button click
 	$('#clear-btn').click(function() {

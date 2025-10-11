@@ -1,7 +1,27 @@
 /* IMPORTING WEBFONTS */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
-@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
+/* @import url(https://fonts.googleapis.com/css?family=Patrick+Hand); */
 @import url(https://fonts.googleapis.com/css?family=Londrina+Solid:400,900&display=swap);
+
+@font-face {
+    font-family: 'OpenDyslexic3';
+    src: url('../fonts/OpenDyslexic3-Regular.woff2') format('woff2'),
+        url('../fonts/OpenDyslexic3-Regular.woff') format('woff'),
+				url('../fonts/OpenDyslexic3-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Patrick Hand';
+    src: url('../fonts/PatrickHand-Regular.woff2') format('woff2'),
+        url('../fonts/PatrickHand-Regular.woff') format('woff'),
+        url('../fonts/PatrickHand-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* RESET
 ----------------------------------------------- */
@@ -206,6 +226,8 @@ footer p {
 	border-right-width:3px;
 	*/
 	font-family:'Patrick Hand', sans-serif;
+	font-family: 'OpenDyslexic3', sans-serif;
+	font-family: var(--text-font, 'Patrick Hand'), sans-serif;
 	font-size: 28px;
 	height: 115vh;
 	resize: none;
@@ -233,6 +255,24 @@ footer p {
 }
 
 .swal-button:focus {box-shadow:none;}
+
+/* Scroll container styling (applied to wrapper) */
+.swal-content > div {
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #f1f1f1;
+}
+
+/* Chrome/Edge scrollbar styling */
+.swal-content > div::-webkit-scrollbar {
+  width: 8px;
+}
+.swal-content > div::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.swal-content > div::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
 
 /* CUSTOM CLASSES
 ----------------------------------------------- */
