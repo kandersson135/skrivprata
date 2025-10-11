@@ -222,28 +222,18 @@ footer p {
 /* TEXTAREA */
 #text-area {
   line-height: 38px;
-  padding: 6.3333333333px 0 6.3333333333px 10px;
+  padding: 6.3333333333px 10px 6.3333333333px 10px;
 	border: 1px solid rgba(50, 50, 50, 0.2);
 	box-shadow: 5px 5px rgba(50, 50, 50, 0.1);
-	/*
-	border: 1px solid #d8d8d8;
-	border-top-left-radius:20px;
-	border-bottom-right-radius:20px;
-	border-bottom-width:3px;
-	border-right-width:3px;
-	*/
-	font-family:'Patrick Hand', sans-serif;
-	font-family: 'OpenDyslexic3', sans-serif;
 	font-family: var(--text-font, 'Patrick Hand'), sans-serif;
 	font-size: 28px;
 	height: 115vh;
 	resize: none;
-	/* width: 100%; */
 	display: block;
 	margin: 0 auto;
 	margin-top: 80px;
 	margin-bottom: 40px;
-	width: 70%;
+	width: 68%;
 	z-index: 999;
 }
 
@@ -312,7 +302,7 @@ footer p {
 
 /* Grundstil */
 #rateSlider {
-  -webkit-appearance: none; /* Ta bort default-stil i Chrome/Safari */
+  -webkit-appearance: none;
   width: 150px;
   height: 6px;
   background: #ddd;
@@ -375,7 +365,7 @@ footer p {
   text-align: right;
 }
 
-/* 🌟 Toggle switch-stil */
+/* Toggle switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -445,10 +435,6 @@ div.spacer {clear:both; display:block; height:10px;}
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
   and (orientation: portrait) {
-
-  #header h1 {
-		display: none;
-	}
 
 	#text-area {
 		height: 85vh;
