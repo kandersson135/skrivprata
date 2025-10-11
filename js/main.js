@@ -279,7 +279,7 @@ $(document).ready(function(){
 
 		$('#word-count').text(words);
 	  $('#char-count').text(chars);
-	  $('#read-time').text(Math.ceil(words / 3) + ' sek');
+		$('#read-time').text(`${Math.ceil(words / (3 * speechRate))}`);
 	  $('#rate-indicator').text(speechRate + 'x');
 
 		let spellStatus = localStorage.getItem("spellcheck") === "true" ? 'På' : 'Av';
