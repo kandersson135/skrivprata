@@ -41,6 +41,8 @@ $(document).ready(function(){
 	var speechRate = localStorage.getItem("speechRate") || 1;
 	var spellcheckEnabled = localStorage.getItem("spellcheck") === "true";
 
+
+
 	// Bygg wrapper för SweetAlert
 	var wrapper = document.createElement('div');
 
@@ -95,11 +97,21 @@ $(document).ready(function(){
 	  });
 
 		// Rättstavnings-checkbox
-	  $('#spellcheck-toggle').on('change', function() {
-	    let enabled = $(this).is(':checked');
-	    $('#text-area').attr('spellcheck', enabled);
-	    localStorage.setItem("spellcheck", enabled);
-	  });
+	  // $('#spellcheck-toggle').on('change', function() {
+	  //   let enabled = $(this).is(':checked');
+	  //   $('#text-area').attr('spellcheck', enabled);
+	  //   localStorage.setItem("spellcheck", enabled);
+	  // });
+
+		$('#spellcheck-toggle').on('change', function() {
+		  let enabled = $(this).is(':checked');
+
+		  $('#text-area')
+		    .attr('spellcheck', enabled)
+		    .attr('autocorrect', enabled ? 'on' : 'off');
+
+		  localStorage.setItem("spellcheck", enabled);
+		});
 	});
 
 	// Vid sidladdning, applicera sparade inställningar
@@ -110,7 +122,10 @@ $(document).ready(function(){
 	}
 
 	//Applicera rättstavning vid laddning
-	$('#text-area').attr('spellcheck', spellcheckEnabled);
+	//$('#text-area').attr('spellcheck', spellcheckEnabled);
+	$('#text-area')
+  .attr('spellcheck', spellcheckEnabled)
+  .attr('autocorrect', spellcheckEnabled ? 'on' : 'off');
 
   // Clear button click
 	$('#clear-btn').click(function() {
