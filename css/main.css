@@ -210,12 +210,14 @@ footer {
     height: 100%;
     margin: 0;
     padding: 0;
+		flex-wrap: wrap;
 }
 
 footer ul {
 	display: flex;
 	margin: 0;
 	padding: 0;
+	list-style: none;
 	gap: 16px;
 }
 
@@ -454,6 +456,7 @@ div.spacer {clear:both; display:block; height:10px;}
 	}
 }
 
+/* ipad i landscape-läge */
 @media only screen
   and (min-device-width: 810px)
   and (max-device-width: 1080px)
@@ -462,6 +465,22 @@ div.spacer {clear:both; display:block; height:10px;}
   #text-area {
     width: 80%;
   }
+}
+
+/* Mobilvänlig styling */
+@media (max-width: 600px) {
+	#text-area {
+		width: 90%;
+		height: 80vh;
+	}
+
+  #footer-bg, .tool-title {
+    display: none;
+  }
+
+	#rateSlider {
+		width: 100px;
+	}
 }
 
 /*
