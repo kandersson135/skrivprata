@@ -49,35 +49,58 @@ $(document).ready(function(){
 
 	// Radio-knappar HTML
 	wrapper.innerHTML = `
-	<p>Välj om du vill visa eller dölja textrader</p>
-	<input type="radio" name="lines" id="opt1" value="1" ${lineOption === "1" ? "checked" : ""}>
-	<label for="opt1">Dölj rader</label>
-	&nbsp;&nbsp;&nbsp;
-	<input type="radio" name="lines" id="opt2" value="2" ${lineOption === "2" ? "checked" : ""}>
-	<label for="opt2">Visa rader</label>
+	<div class="settings-wrapper">
+	  <div class="setting">
+	    <label for="lines-toggle">Visa textrader</label>
+	    <input type="checkbox" id="lines-toggle" ${lineOption === "2" ? "checked" : ""}>
+	  </div>
 
-	<br><br><br><hr color="#eee"><br><br>
+	  <div class="setting">
+	    <label for="rateSlider">Rösthastighet</label>
+	    <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
+	    <span id="rateValue">${speechRate}</span>
+	  </div>
 
-	<p>Rösthastighet för talsyntes</p>
-	<input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
-	<span id="rateValue">${speechRate}</span>
+	  <div class="setting">
+	    <label for="spellcheck-toggle">Rättstavning</label>
+	    <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
+	  </div>
 
-	<br><br><br><hr color="#eee"><br><br>
-
-	<p>Rättstavning</p>
-	<label>
-	  <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
-	  Aktivera rättstavning
-	</label>
-
-	<br><br><br><hr color="#eee"><br><br>
-
-	<p>Typsnitt</p>
-	<label>
-	  <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
-	  Använd dyslexivänligt typsnitt
-	</label>
+	  <div class="setting">
+	    <label for="font-toggle">Dyslexivänligt typsnitt</label>
+	    <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
+	  </div>
+	</div>
 	`;
+	// wrapper.innerHTML = `
+	// <p>Välj om du vill visa eller dölja textrader</p>
+	// <label>
+	//   <input type="checkbox" id="lines-toggle" ${lineOption === "2" ? "checked" : ""}>
+	//   Visa rader
+	// </label>
+	//
+	// <br><br><br><hr color="#eee"><br><br>
+	//
+	// <p>Rösthastighet för talsyntes</p>
+	// <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
+	// <span id="rateValue">${speechRate}</span>
+	//
+	// <br><br><br><hr color="#eee"><br><br>
+	//
+	// <p>Rättstavning</p>
+	// <label>
+	//   <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
+	//   Aktivera rättstavning
+	// </label>
+	//
+	// <br><br><br><hr color="#eee"><br><br>
+	//
+	// <p>Typsnitt</p>
+	// <label>
+	//   <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
+	//   Använd dyslexivänligt typsnitt
+	// </label>
+	// `;
 
 	// Settings-knapp
 	$('#settings-btn').click(function() {
@@ -86,16 +109,17 @@ $(document).ready(function(){
 	    content: wrapper
 	  });
 
-	  // Radio-knappar direktkoppling
-	  $('#opt1').on('change', function(){
-	      localStorage.setItem("option", "1");
-	      $("#text-area").removeClass("lines");
-	  });
+		$('#lines-toggle').on('change', function() {
+		  let showLines = $(this).is(':checked');
 
-	  $('#opt2').on('change', function(){
-	      localStorage.setItem("option", "2");
-	      $("#text-area").addClass("lines");
-	  });
+		  if(showLines) {
+		    $('#text-area').addClass('lines');
+		    localStorage.setItem("option", "2");
+		  } else {
+		    $('#text-area').removeClass('lines');
+		    localStorage.setItem("option", "1");
+		  }
+		});
 
 	  // Slider för hastighet
 	  $('#rateSlider').on('input change', function() {
