@@ -78,35 +78,6 @@ $(document).ready(function(){
 	  </div>
 	</div>
 	`;
-	// wrapper.innerHTML = `
-	// <p>Välj om du vill visa eller dölja textrader</p>
-	// <label>
-	//   <input type="checkbox" id="lines-toggle" ${lineOption === "2" ? "checked" : ""}>
-	//   Visa rader
-	// </label>
-	//
-	// <br><br><br><hr color="#eee"><br><br>
-	//
-	// <p>Rösthastighet för talsyntes</p>
-	// <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="${speechRate}">
-	// <span id="rateValue">${speechRate}</span>
-	//
-	// <br><br><br><hr color="#eee"><br><br>
-	//
-	// <p>Rättstavning</p>
-	// <label>
-	//   <input type="checkbox" id="spellcheck-toggle" ${spellcheckEnabled ? "checked" : ""}>
-	//   Aktivera rättstavning
-	// </label>
-	//
-	// <br><br><br><hr color="#eee"><br><br>
-	//
-	// <p>Typsnitt</p>
-	// <label>
-	//   <input type="checkbox" id="font-toggle" ${dyslexicFontEnabled ? "checked" : ""}>
-	//   Använd dyslexivänligt typsnitt
-	// </label>
-	// `;
 
 	// Settings-knapp
 	$('#settings-btn').click(function() {
@@ -127,7 +98,7 @@ $(document).ready(function(){
 		  }
 		});
 
-	  // Slider för hastighet
+	  // Slider for speech rate
 	  $('#rateSlider').on('input change', function() {
 	    let newRate = $(this).val();
 	    $('#rateValue').text(newRate);
@@ -136,13 +107,7 @@ $(document).ready(function(){
 			updateFooterStats();
 	  });
 
-		// Rättstavnings-checkbox
-	  // $('#spellcheck-toggle').on('change', function() {
-	  //   let enabled = $(this).is(':checked');
-	  //   $('#text-area').attr('spellcheck', enabled);
-	  //   localStorage.setItem("spellcheck", enabled);
-	  // });
-
+		// Spellcheck toggle
 		$('#spellcheck-toggle').on('change', function() {
 		  let enabled = $(this).is(':checked');
 
@@ -157,30 +122,30 @@ $(document).ready(function(){
 		$('#font-toggle').on('change', function() {
 			dyslexicFontEnabled = $(this).is(':checked');
 
-		  // Byt font
+		  // Change font
 		  document.documentElement.style.setProperty(
 		    '--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
 		  );
 
-		  // Spara i localStorage
+		  // Save to localStorage
 		  localStorage.setItem("dyslexicFont", dyslexicFontEnabled);
 		});
 	});
 
-	// Vid sidladdning, applicera sparade inställningar
+	// At page load, apply saved settings
+	// lines
 	if(lineOption === "1") {
 	  $("#text-area").removeClass("lines");
 	} else {
 	  $("#text-area").addClass("lines");
 	}
 
-	// Applicera rättstavning vid sidladdning
-	//$('#text-area').attr('spellcheck', spellcheckEnabled);
+	// spell check
 	$('#text-area')
   .attr('spellcheck', spellcheckEnabled)
   .attr('autocorrect', spellcheckEnabled ? 'on' : 'off');
 
-	// Applicera font vid sidladdning
+	// font
 	document.documentElement.style.setProperty(
 		'--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
 	);
@@ -202,7 +167,7 @@ $(document).ready(function(){
 				// Remove text from localStorage
 				localStorage.removeItem('skrivprata-text');
 
-				// spela ljudet
+				// play sound
 			  const audio = new Audio('audio/eraser.mp3');
 			  audio.play();
 				audio.loop = true;
@@ -215,9 +180,9 @@ $(document).ready(function(){
 
 						updateFooterStats();
 
-						// stoppa ljudet direkt när vi är klara
+						// stop sound
 			      audio.pause();
-			      audio.currentTime = 0; // hoppa tillbaka till början
+			      audio.currentTime = 0;
 			      return;
 			    }
 			    $txt.val(val.slice(0,i));
@@ -256,29 +221,17 @@ $(document).ready(function(){
 
 	// get current word position
 	function getCurrentWord(textarea) {
-	  // markörens position
 	  let pos = textarea.selectionStart;
-
-	  // ta texten fram till markören
 	  let beforeCursor = textarea.value.substring(0, pos);
-
-	  // splitta på mellanslag eller radbrytning
 	  let words = beforeCursor.trim().split(/\s+/);
-
-	  // returnera sista ordet innan markören
 	  return words[words.length - 1];
 	}
 
 	function getCurrentSentence(textarea) {
 	  let pos = textarea.selectionStart;
 	  let text = textarea.value.substring(0, pos);
-
-	  // Dela texten i meningar på skiljetecken (inklusive dem)
 	  let sentences = text.split(/(?<=[.!?])/);
-	  // Trimma bort tomma element
 	  sentences = sentences.map(s => s.trim()).filter(s => s.length > 0);
-
-	  // Returnera sista meningen om den finns
 	  return sentences.length > 0 ? sentences[sentences.length - 1] : "";
 	}
 
@@ -329,7 +282,6 @@ $(document).ready(function(){
 	  $('#read-time').text(Math.ceil(words / 3) + ' sek');
 	  $('#rate-indicator').text(speechRate + 'x');
 
-	  // Rättstavning-status
 		let spellStatus = localStorage.getItem("spellcheck") === "true" ? 'På' : 'Av';
 		$('#spell-status').text(spellStatus);
 	}
@@ -344,10 +296,6 @@ $(document).ready(function(){
 			let word = getCurrentWord(textArea);
 
 			if (word) {
-	      // responsiveVoice.speak(word.toLowerCase(), "Swedish Female", {
-	      //   rate: speechRate
-	      // });
-
 				speakText(word.toLowerCase(), speechRate);
 	    }
 	  }
