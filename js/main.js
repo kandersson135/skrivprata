@@ -26,8 +26,21 @@ $(document).ready(function(){
 
   // Print button click
 	$('#print-btn').click(function() {
-    window.print();
+    //window.print();
+
+		resizeAndPrint();
   });
+
+	function resizeAndPrint() {
+		var _print = window.print;
+			window.print = function() {
+				$('textarea').each(function() {
+					$(this).height($(this).prop('scrollHeight'));
+				});
+				_print();
+			}
+		window.print();
+	}
 
   // Settings button click
 	// Hämta sparade inställningar

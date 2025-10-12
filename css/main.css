@@ -448,10 +448,45 @@ img.center {display:block; margin-left:auto; margin-right:auto;}
 /* SPACER */
 div.spacer {clear:both; display:block; height:10px;}
 
-@media print {
+/* @media print {
   @page {margin: 0; size: A4 portrait;}
-  body, #header-bg, #header {visibility: hidden; background:none;}
+  body, #header-bg, #header, .lines {visibility: hidden; background:none;}
   #text-area {border: none; box-shadow: none; width: 100%; height: 842px; visibility: visible; -webkit-print-color-adjust: exact;}
+} */
+
+@media print {
+	@page:first {
+		size: A4 portrait;
+		 margin-top: 0mm;
+	 }
+
+	 @page {
+		 size: A4 portrait;
+		 margin-top: 20mm;
+		 margin-bottom: 20mm;
+		 margin-left: 15mm;
+		 margin-right: 15mm;
+	 }
+
+	 body, #header-bg, #header, .lines {
+     visibility: hidden;
+     background: none;
+   }
+
+   #text-area {
+     border: none;
+     box-shadow: none;
+     width: 100%;
+     height: auto; /* ← ändrad här */
+     visibility: visible;
+     -webkit-print-color-adjust: exact;
+
+     /* Viktigt för sidbrytning */
+     page-break-inside: auto;
+     page-break-before: auto;
+     page-break-after: auto;
+     overflow: visible;
+   }
 }
 
 /* Media query för iPad i portrait-läge */
