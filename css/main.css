@@ -164,12 +164,14 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
   font-size: 26px;
   font-weight: 400;
   color: #fff;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
 .tool-title img {
 	width: 22px;
-	position: relative;
-	top: 2px;
+	height: auto;
 }
 
 .tool-buttons {
