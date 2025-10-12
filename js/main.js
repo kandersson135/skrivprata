@@ -141,7 +141,7 @@ $(document).ready(function(){
 			  document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
 
 			  if (isIpad) {
-			    document.documentElement.style.setProperty('--font-size', '16px');
+			    document.documentElement.style.setProperty('--font-size', '20px');
 			  } else {
 			    document.documentElement.style.setProperty('--font-size', '26px');
 			  }
@@ -182,7 +182,7 @@ $(document).ready(function(){
 		document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
 
 		if (isIpad) {
-			document.documentElement.style.setProperty('--font-size', '16px');
+			document.documentElement.style.setProperty('--font-size', '20px');
 		} else {
 			document.documentElement.style.setProperty('--font-size', '26px');
 		}
