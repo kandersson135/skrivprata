@@ -10,6 +10,7 @@ const FILES_TO_CACHE = [
   "js/fontawesome.all.js",
   "img/favicon.ico",
   "img/webapp-icon.jpg",
+  "img/icon.png",
   // Lägg till alla dina ljudfiler
   "audio/a.mp3",
   "audio/b.mp3",
