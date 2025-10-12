@@ -123,9 +123,34 @@ $(document).ready(function(){
 			dyslexicFontEnabled = $(this).is(':checked');
 
 		  // Change font
-		  document.documentElement.style.setProperty(
-		    '--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
-		  );
+		  // document.documentElement.style.setProperty(
+		  //   '--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
+		  // );
+
+			// if (dyslexicFontEnabled) {
+			//   document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
+			//   document.documentElement.style.setProperty('--font-size', '22px');
+			// } else {
+			//   document.documentElement.style.setProperty('--text-font', 'Patrick Hand');
+			//   document.documentElement.style.setProperty('--font-size', '28px');
+			// }
+
+			const isIpad = /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+
+			if (dyslexicFontEnabled) {
+			  document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
+
+			  if (isIpad) {
+			    document.documentElement.style.setProperty('--font-size', '16px');
+			  } else {
+			    document.documentElement.style.setProperty('--font-size', '26px');
+			  }
+
+			} else {
+			  document.documentElement.style.setProperty('--text-font', 'Patrick Hand');
+			  document.documentElement.style.setProperty('--font-size', '28px');
+			}
+
 
 		  // Save to localStorage
 		  localStorage.setItem("dyslexicFont", dyslexicFontEnabled);
@@ -146,10 +171,27 @@ $(document).ready(function(){
   .attr('autocorrect', spellcheckEnabled ? 'on' : 'off');
 
 	// font
-	document.documentElement.style.setProperty(
-		'--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
-	);
-	$('#font-toggle').prop('checked', dyslexicFontEnabled);
+	// document.documentElement.style.setProperty(
+	// 	'--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
+	// );
+	//$('#font-toggle').prop('checked', dyslexicFontEnabled);
+
+	const isIpad = /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+
+	if (dyslexicFontEnabled) {
+		document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
+
+		if (isIpad) {
+			document.documentElement.style.setProperty('--font-size', '16px');
+		} else {
+			document.documentElement.style.setProperty('--font-size', '26px');
+		}
+
+	} else {
+		document.documentElement.style.setProperty('--text-font', 'Patrick Hand');
+		document.documentElement.style.setProperty('--font-size', '28px');
+	}
+
 
   // Clear button click
 	$('#clear-btn').click(function() {

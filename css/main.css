@@ -169,6 +169,8 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
 	gap: 5px;
 }
 
+.tool-title a {color: #fff;}
+
 .tool-title img {
 	width: 22px;
 	height: auto;
@@ -248,7 +250,7 @@ footer p {
 	border: 1px solid rgba(50, 50, 50, 0.2);
 	box-shadow: 5px 5px rgba(50, 50, 50, 0.1);
 	font-family: var(--text-font, 'Patrick Hand'), sans-serif;
-	font-size: 28px;
+ 	font-size: var(--font-size);
 	height: 115vh;
 	resize: none;
 	display: block;
