@@ -266,6 +266,10 @@ footer p {
   background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #f1f1f1 36px, #f1f1f1 38px);
 }
 
+#print_helper {
+  display: none;
+}
+
 /* SWEET-ALERT */
 .swal-modal {
   background-color:#fff;
@@ -455,6 +459,25 @@ div.spacer {clear:both; display:block; height:10px;}
 } */
 
 @media print {
+	#print_helper {
+    display: block;
+    overflow: visible;
+		font-family: var(--text-font, 'Patrick Hand'), sans-serif;
+		font-size: 24px;
+    white-space: pre;
+    white-space: pre-wrap;
+	}
+
+	body {
+		background: none;
+	}
+
+	#text-area, #tool-header, #footer-bg {
+	  display: none;
+	}
+}
+
+/* @media print {
 	@page:first {
 		size: A4 portrait;
 		 margin-top: 0mm;
@@ -477,17 +500,16 @@ div.spacer {clear:both; display:block; height:10px;}
      border: none;
      box-shadow: none;
      width: 100%;
-     height: auto; /* ← ändrad här */
+     height: auto;
      visibility: visible;
      -webkit-print-color-adjust: exact;
 
-     /* Viktigt för sidbrytning */
      page-break-inside: auto;
      page-break-before: auto;
      page-break-after: auto;
      overflow: visible;
    }
-}
+} */
 
 /* Media query för iPad i portrait-läge */
 @media only screen

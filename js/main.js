@@ -26,9 +26,9 @@ $(document).ready(function(){
 
   // Print button click
 	$('#print-btn').click(function() {
-    //window.print();
+    window.print();
 
-		resizeAndPrint();
+		//resizeAndPrint();
   });
 
 	function resizeAndPrint() {
@@ -325,6 +325,11 @@ $(document).ready(function(){
 	  }
 	}
 
+	// cope text to print helper
+	function copy_to_print_helper(){
+    $('#print_helper').text($('#text-area').val());
+  }
+
 	// update footer stats
 	function updateFooterStats() {
 	  let text = $('#text-area').val();
@@ -380,12 +385,14 @@ $(document).ready(function(){
 	  }
 	});
 
-	// Uppdatera footer stats vid pageload
+	// Kör vid page load
 	updateFooterStats();
+	copy_to_print_helper();
 
 	// Kör varje gång texten ändras
 	$('#text-area').on('input', function() {
 	  localStorage.setItem('skrivprata-text', $(this).val());
 		updateFooterStats();
+		copy_to_print_helper();
 	});
 });
