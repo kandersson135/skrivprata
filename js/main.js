@@ -192,7 +192,6 @@ $(document).ready(function(){
 		document.documentElement.style.setProperty('--font-size', '28px');
 	}
 
-
   // Clear button click
 	$('#clear-btn').click(function() {
 	  swal({
