@@ -463,7 +463,8 @@ div.spacer {clear:both; display:block; height:10px;}
     display: block;
     overflow: visible;
 		font-family: var(--text-font, 'Patrick Hand'), sans-serif;
-		font-size: 24px;
+		font-size: 28px;
+    line-height: 40px;
     white-space: pre;
     white-space: pre-wrap;
 	}
