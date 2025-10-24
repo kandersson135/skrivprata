@@ -345,16 +345,27 @@ $(document).ready(function(){
 	function speakText(text, rate = 1) {
 	  if (typeof responsiveVoice !== "undefined" && responsiveVoice.speak) {
 	    // Försök med responsiveVoice
-	    responsiveVoice.speak(text, "Swedish Female", { rate: rate });
+	    //responsiveVoice.speak(text, "Swedish Female", { rate: rate });
+
 			// responsiveVoice.speak(text, "Swedish Female", {
 		  //   rate: rate,
 		  //   onstart: function() {
-			// 		$('#speak-btn').html('<i class="fas fa-volume-up"></i>');
+			// 		$('#speak-btn').addClass('icon-speaking');
 		  //   },
 		  //   onend: function() {
-		  //     $('#speak-btn').html('<i class="fas fa-volume-off"></i>');
+		  //     $('#speak-btn').removeClass('icon-speaking');
 		  //   }
 		  // });
+
+			responsiveVoice.speak(text, "Swedish Female", {
+		    rate: rate,
+		    onstart: function() {
+					$('#speak-btn').html('<i class="fas fa-volume-up fa-fw"></i>');
+		    },
+		    onend: function() {
+		      $('#speak-btn').html('<i class="fas fa-volume-off fa-fw"></i>');
+		    }
+		  });
 	  } else if ('speechSynthesis' in window) {
 	    // Fallback till inbyggd talsyntes
 	    let utterance = new SpeechSynthesisUtterance(text);
@@ -432,6 +443,14 @@ $(document).ready(function(){
 	    if ("abcdefghijklmnopqrstuvwxyzåäö".includes(letter)) {
 	      let audio = new Audio('audio/' + letter + '.mp3');
 	      audio.play();
+
+				$('#speak-btn').addClass('icon-speaking');
+
+				// Ta bort klassen när ljudet är klart
+			 audio.addEventListener('ended', function() {
+				 $('#speak-btn').removeClass('icon-speaking');
+			 });
+
 				//playLetterSound(letter, speechRate);
 	    }
 			justReadSentence = false;
