@@ -1,6 +1,11 @@
 $(document).ready(function(){
+	const VERSION = "0.0.8";
+
 	// Setting text-area focus on page load
 	$('#text-area').focus();
+
+	// version display
+	$('#versionDisplay').text(`Version: ${VERSION}`);
 
 	// Fetch text from localStorage
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
@@ -301,7 +306,17 @@ $(document).ready(function(){
 
   // Help button click
   var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = '<p>Detta är ett hjälpmedel som läser upp text medan du skriver, ljudar bokstäver och ord, och gör det lättare för elever att träna läs- och skrivinlärning.<br><br>Version: 0.0.8.<br><br>Utvecklad av Kim Andersson.<br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a></p>';
+	wrapper2.innerHTML = `
+	  <p>
+	    Detta är ett hjälpmedel som läser upp text medan du skriver, ljudar bokstäver och ord,
+	    och gör det lättare för elever att träna läs- och skrivinlärning.
+	    <br><br>Version: ${VERSION}.
+	    <br><br>Utvecklad av Kim Andersson.
+	    <br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">
+	      kandersson135@gmail.com
+	    </a>
+	  </p>
+	`;
 
 	$('#help-btn').click(function() {
     swal({
