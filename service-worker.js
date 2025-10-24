@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrivprata-v3";
+const CACHE_NAME = "skrivprata-v4";
 
 // Lägg in alla resurser som ska cachas här
 const FILES_TO_CACHE = [
