@@ -29,6 +29,18 @@ $(document).ready(function(){
 	  $('#text-area').focus();
 	});
 
+	// short command
+	$(document).on('keydown', function(e) {
+	  if (e.ctrlKey && e.key === '.') {
+	    e.preventDefault();
+			let text = $('#text-area').val();
+		  if (text.trim() !== "") {
+		    speakText(text.toLowerCase(), speechRate); // använder vår wrapper
+		  }
+		  $('#text-area').focus();
+	  }
+	});
+
   // Print button click
 	$('#print-btn').click(function() {
     window.print();
@@ -238,6 +250,9 @@ $(document).ready(function(){
 
 	      // Ta bort text från localStorage
 	      localStorage.removeItem('skrivprata-text');
+
+				// rensa copy to print helper
+				$('#print_helper').text('');
 
 	      // Spela suddljudet
 	      const audio = new Audio('audio/eraser.mp3');
