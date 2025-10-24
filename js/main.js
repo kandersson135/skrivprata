@@ -207,6 +207,20 @@ $(document).ready(function(){
 
   // Clear button click
 	$('#clear-btn').click(function() {
+	  const $txt = $('#text-area');
+	  const currentText = $txt.val().trim();
+
+	  // Kolla om textarean är tom
+	  if (currentText.length === 0) {
+	    swal("Textfältet är redan tomt!", {
+	      icon: "info",
+	      buttons: false,
+	      timer: 1500
+	    });
+	    return; // Avbryt funktionen
+	  }
+
+	  // Om det finns text, visa bekräftelserutan
 	  swal({
 	    title: "Är du säker?",
 	    text: "All text kommer att raderas.",
@@ -214,37 +228,76 @@ $(document).ready(function(){
 	  })
 	  .then((willClear) => {
 	    if (willClear) {
-			  const $txt = $('#text-area');
-			  let val = $txt.val();
-			  let i = val.length;
+	      let val = $txt.val();
+	      let i = val.length;
 
-				// Remove text from localStorage
-				localStorage.removeItem('skrivprata-text');
+	      // Ta bort text från localStorage
+	      localStorage.removeItem('skrivprata-text');
 
-				// play sound
-			  const audio = new Audio('audio/eraser.mp3');
-			  audio.play();
-				audio.loop = true;
+	      // Spela suddljudet
+	      const audio = new Audio('audio/eraser.mp3');
+	      audio.play();
+	      audio.loop = true;
 
-			  const interval = setInterval(function(){
-			    if(i <= 0){
-			      clearInterval(interval);
-			      $txt.val('');
-			      $txt.focus();
+	      const interval = setInterval(function() {
+	        if (i <= 0) {
+	          clearInterval(interval);
+	          $txt.val('');
+	          $txt.focus();
 
-						updateFooterStats();
+	          updateFooterStats();
 
-						// stop sound
-			      audio.pause();
-			      audio.currentTime = 0;
-			      return;
-			    }
-			    $txt.val(val.slice(0,i));
-			    i--;
-			  }, 10); // 10ms mellan varje bokstav
+	          // Stoppa ljudet
+	          audio.pause();
+	          audio.currentTime = 0;
+	          return;
+	        }
+	        $txt.val(val.slice(0, i));
+	        i--;
+	      }, 10); // 10 ms mellan varje bokstav
 	    }
 	  });
 	});
+
+	// $('#clear-btn').click(function() {
+	//   swal({
+	//     title: "Är du säker?",
+	//     text: "All text kommer att raderas.",
+	//     buttons: ["Avbryt", "Rensa"],
+	//   })
+	//   .then((willClear) => {
+	//     if (willClear) {
+	// 		  const $txt = $('#text-area');
+	// 		  let val = $txt.val();
+	// 		  let i = val.length;
+	//
+	// 			// Remove text from localStorage
+	// 			localStorage.removeItem('skrivprata-text');
+	//
+	// 			// play sound
+	// 		  const audio = new Audio('audio/eraser.mp3');
+	// 		  audio.play();
+	// 			audio.loop = true;
+	//
+	// 		  const interval = setInterval(function(){
+	// 		    if(i <= 0){
+	// 		      clearInterval(interval);
+	// 		      $txt.val('');
+	// 		      $txt.focus();
+	//
+	// 					updateFooterStats();
+	//
+	// 					// stop sound
+	// 		      audio.pause();
+	// 		      audio.currentTime = 0;
+	// 		      return;
+	// 		    }
+	// 		    $txt.val(val.slice(0,i));
+	// 		    i--;
+	// 		  }, 10); // 10ms mellan varje bokstav
+	//     }
+	//   });
+	// });
 
   // Help button click
   var wrapper2 = document.createElement('div');

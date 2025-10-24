@@ -150,6 +150,9 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
   border-bottom: 1px solid #1E90FF; /* dodger blue */
 	background-color: #BFA2DB; /* pastellila */
   border-bottom: 1px solid #8E44AD; /* djup lila */
+
+  background-color: #9967e6; /* ljus mintgrön */
+  border-bottom: 2px solid #874BE2; /* klarare grön */
 	box-shadow: 1px 1px 2px rgba(100, 100, 100, 0.2);
   padding: 4px 10px;
 	font-family: 'Londrina Solid', sans-serif;
@@ -192,12 +195,12 @@ header ul li button:active {box-shadow: none; position: relative; top: 2px; left
 }
 
 .tool-buttons button:hover {
-  background-color: #AF89D1;
+  background-color: #874BE2;
   border-radius: 4px;
 }
 
 .tool-buttons button:active {
-  background-color: #9868C4;
+  background-color: #6D24DB;
 }
 
 /* footer */
@@ -279,8 +282,8 @@ footer p {
   border-right-width: 2px;
 }
 
-.swal-button {background-color: #BFA2DB; transition: background 0.2s ease;}
-.swal-button:hover {background-color: #AF89D1 !important;}
+.swal-button {background-color: #9967E6; transition: background 0.2s ease;}
+.swal-button:hover {background-color: #874BE2 !important;}
 .swal-button--cancel {background-color: #efefef;}
 .swal-button--cancel:hover {background-color: #dfdfdf !important;}
 .swal-button:focus {box-shadow:none;}
@@ -350,30 +353,30 @@ footer p {
   appearance: none;
   width: 18px;
   height: 18px;
-  background: #BFA2DB;
+  background: #9967E6;
   border-radius: 50%;
-  border: 2px solid #AF89D1;
+  border: 2px solid #874BE2;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 #rateSlider::-webkit-slider-thumb:hover {
-  background: #AF89D1;
+  background: #874BE2;
 }
 
 /* Firefox */
 #rateSlider::-moz-range-thumb {
   width: 18px;
   height: 18px;
-  background: #BFA2DB;
+  background: #9967E6;
   border-radius: 50%;
-  border: 2px solid #AF89D1;
+  border: 2px solid #874BE2;
   cursor: pointer;
 	transition: background 0.3s;
 }
 
 #rateSlider::-moz-range-thumb:hover {
-  background: #AF89D1;
+  background: #874BE2;
 }
 
 #rateSlider::-moz-range-track {
@@ -432,7 +435,7 @@ footer p {
 }
 
 .switch input:checked + .slider {
-  background-color: #BFA2DB;
+  background-color: #9967E6;
 }
 
 .switch input:checked + .slider:before {
