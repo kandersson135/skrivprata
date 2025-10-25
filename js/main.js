@@ -340,41 +340,39 @@ $(document).ready(function(){
 	// });
 
 	// Help button click
-var wrapper2 = document.createElement('div');
-wrapper2.innerHTML = `
-  <div style="font-size: 16px; line-height: 1.6; text-align: left;">
-    <p>
-      <strong>Skrivprata</strong> är ett hjälpmedel som läser upp text medan du skriver,
-      ljudar bokstäver och ord och gör det lättare för elever att träna läs- och skrivinlärning.
-    </p>
+	var wrapper2 = document.createElement('div');
+	wrapper2.innerHTML = `
+	  <div style="font-size: 16px; line-height: 1.6; text-align: left;">
+	    <p>
+	      <strong>Skrivprata</strong> är ett hjälpmedel som läser upp text medan du skriver,
+	      ljudar bokstäver och ord och gör det lättare för elever att träna läs- och skrivinlärning.
+	    </p>
 
-    <ul style="margin: 0; padding-left: 1.2em;">
-      <li>Börja skriva i rutan för att komma igång.</li>
-      <li>Tryck på <i class="fas fa-volume-off"></i> för att höra texten.</li>
-      <li>Din text sparas automatiskt i webbläsaren.</li>
-    </ul>
+	    <ul style="margin: 0; padding-left: 1.2em;">
+	      <li>Börja skriva i rutan för att komma igång.</li>
+	      <li>Tryck på <i class="fas fa-volume-off"></i> för att höra texten.</li>
+	      <li>Din text sparas automatiskt i webbläsaren.</li>
+	    </ul>
 
-    <p style="margin-top: 1em; font-style: italic;">
-      💡 Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.
-    </p>
+	    <p style="margin-top: 1em; font-style: italic;">
+	      💡 Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.
+	    </p>
 
-    <p style="margin-top: 1em;">
-      Utvecklad av Kim Andersson.<br>
-      <a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">
-        kandersson135@gmail.com
-      </a>
-    </p>
-  </div>
-`;
+	    <p style="margin-top: 1em;">
+	      Utvecklad av Kim Andersson.<br>
+	      <a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">
+	        kandersson135@gmail.com
+	      </a>
+	    </p>
+	  </div>
+	`;
 
-
-$('#help-btn').click(function() {
-  swal({
-    title: 'Om Skrivprata',
-    content: wrapper2
-  });
-});
-
+	$('#help-btn').click(function() {
+	  swal({
+	    title: 'Om Skrivprata',
+	    content: wrapper2
+	  });
+	});
 
 	// playbackRate for letters
 	function playLetterSound(letter, rate = 1) {
