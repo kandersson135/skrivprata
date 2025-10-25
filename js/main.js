@@ -14,21 +14,21 @@ $(document).ready(function(){
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
 
 	// Kollar om tipsrutan redan visats
-	if (!tipShown) {
-    // Visa bara om det är första gången OCH texten är tom
-    if ($textArea.val().trim() === "") {
-      $tipBox.show();
-    }
-
-    // När användaren börjar skriva → dölj tipsrutan och spara flagga
-    $textArea.one('input', function() {
-      $tipBox.fadeOut(800);
-      localStorage.setItem('tipShown', 'true');
-    });
-  } else {
-    // Användaren har redan sett tipset tidigare
-    $tipBox.hide();
-  }
+	// if (!tipShown) {
+  //   // Visa bara om det är första gången OCH texten är tom
+  //   if ($textArea.val().trim() === "") {
+  //     $tipBox.show();
+  //   }
+	//
+  //   // När användaren börjar skriva → dölj tipsrutan och spara flagga
+  //   $textArea.one('input', function() {
+  //     $tipBox.fadeOut(800);
+  //     localStorage.setItem('tipShown', 'true');
+  //   });
+  // } else {
+  //   // Användaren har redan sett tipset tidigare
+  //   $tipBox.hide();
+  // }
 
 	// Speak button click
 	// $('#speak-btn').click(function() {
@@ -339,26 +339,42 @@ $(document).ready(function(){
 	//   });
 	// });
 
-  // Help button click
-  var wrapper2 = document.createElement('div');
-	wrapper2.innerHTML = `
-	  <p>
-	    Detta är ett hjälpmedel som läser upp text medan du skriver, ljudar bokstäver och ord,
-	    och gör det lättare för elever att träna läs- och skrivinlärning.
-	    <br><br>Version: ${VERSION}.
-	    <br><br>Utvecklad av Kim Andersson.
-	    <br><a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">
-	      kandersson135@gmail.com
-	    </a>
-	  </p>
-	`;
+	// Help button click
+var wrapper2 = document.createElement('div');
+wrapper2.innerHTML = `
+  <div style="font-size: 16px; line-height: 1.6; text-align: left;">
+    <p>
+      <strong>Skrivprata</strong> är ett hjälpmedel som läser upp text medan du skriver,
+      ljudar bokstäver och ord och gör det lättare för elever att träna läs- och skrivinlärning.
+    </p>
 
-	$('#help-btn').click(function() {
-    swal({
-		  title: 'Om Skrivprata',
-		  content: wrapper2
-		});
+    <ul style="margin: 0; padding-left: 1.2em;">
+      <li>Börja skriva i rutan för att komma igång.</li>
+      <li>Tryck på <i class="fas fa-volume-off"></i> för att höra texten.</li>
+      <li>Din text sparas automatiskt i webbläsaren.</li>
+    </ul>
+
+    <p style="margin-top: 1em; font-style: italic;">
+      💡 Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.
+    </p>
+
+    <p style="margin-top: 1em;">
+      Utvecklad av Kim Andersson.<br>
+      <a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">
+        kandersson135@gmail.com
+      </a>
+    </p>
+  </div>
+`;
+
+
+$('#help-btn').click(function() {
+  swal({
+    title: 'Om Skrivprata',
+    content: wrapper2
   });
+});
+
 
 	// playbackRate for letters
 	function playLetterSound(letter, rate = 1) {
