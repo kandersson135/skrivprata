@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	const VERSION = "0.0.8";
+	const VERSION = "0.0.9";
 	const $textArea = $('#text-area');
   const $tipBox = $('#tip-box');
 	const tipShown = localStorage.getItem('tipShown');
@@ -344,7 +344,7 @@ $(document).ready(function(){
 	wrapper2.innerHTML = `
 	  <div style="font-size: 16px; line-height: 1.6; text-align: left;">
 	    <p>
-	      <strong>Skrivprata</strong> är ett hjälpmedel som läser upp text medan du skriver,
+	      Skrivprata är ett hjälpmedel som läser upp text medan du skriver,
 	      ljudar bokstäver och ord och gör det lättare för elever att träna läs- och skrivinlärning.
 	    </p>
 
@@ -354,13 +354,14 @@ $(document).ready(function(){
 	      <li>Din text sparas automatiskt i webbläsaren.</li>
 	    </ul>
 
-	    <p style="margin-top: 1em;">
-	      💡<em>Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.</em>
+	    <p style="margin-top: 1em; font-style: italic; font-size: 12px; border-radius: 4px;  border: 1px solid #f3f3f3; color: #777; background: #f5f5f5; padding: 4px;">
+	    	Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.
 	    </p>
 
 	    <p style="margin-top: 1em;">
 	      Utvecklad av Kim Andersson.<br>
 	      <a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a>
+				<span style="float: right;">Version: ${VERSION}</span>
 	    </p>
 	  </div>
 	`;
