@@ -41,6 +41,8 @@ a img {border:none;}
 ----------------------------------------------- */
 html {
   scrollbar-width: thin;
+  overscroll-behavior-x: none;
+  scroll-behavior: smooth;
 }
 
 body {
