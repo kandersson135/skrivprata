@@ -39,6 +39,10 @@ a img {border:none;}
 
 /* HTML PREDEFINED TAGS
 ----------------------------------------------- */
+html {
+  scrollbar-width: thin;
+}
+
 body {
 	background: #ece4e7;
 	color:#444;

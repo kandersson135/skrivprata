@@ -354,14 +354,14 @@ $(document).ready(function(){
 	      <li>Din text sparas automatiskt i webbläsaren.</li>
 	    </ul>
 
-	    <p style="margin-top: 1em; font-style: italic; font-size: 12px; border-radius: 4px;  border: 1px solid #f3f3f3; color: #777; background: #f5f5f5; padding: 4px;">
+	    <p style="margin-top: 1em; font-size: 12px; border-radius: 4px;  border: 1px solid #eee; color: #777; background: #f5f5f5; padding: 4px;">
 	    	Bonustips: Använd kortkommando <strong>CTRL + .</strong> för att läsa upp all text.
 	    </p>
 
 	    <p style="margin-top: 1em;">
 	      Utvecklad av Kim Andersson.<br>
 	      <a href="mailto:kandersson135@gmail.com?subject=Skrivprata%20webbapp">kandersson135@gmail.com</a>
-				<span style="float: right;">Version: ${VERSION}</span>
+				<span style="float: right; color: #ccc; font-size: 10px;">Version: ${VERSION}</span>
 	    </p>
 	  </div>
 	`;
