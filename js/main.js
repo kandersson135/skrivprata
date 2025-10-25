@@ -1,5 +1,8 @@
 $(document).ready(function(){
 	const VERSION = "0.0.8";
+	const $textArea = $('#text-area');
+  const $tipBox = $('#tip-box');
+	const tipShown = localStorage.getItem('tipShown');
 
 	// Setting text-area focus on page load
 	$('#text-area').focus();
@@ -9,6 +12,23 @@ $(document).ready(function(){
 
 	// Fetch text from localStorage
 	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
+
+	// Kollar om tipsrutan redan visats
+	if (!tipShown) {
+    // Visa bara om det är första gången OCH texten är tom
+    if ($textArea.val().trim() === "") {
+      $tipBox.show();
+    }
+
+    // När användaren börjar skriva → dölj tipsrutan och spara flagga
+    $textArea.one('input', function() {
+      $tipBox.fadeOut(800);
+      localStorage.setItem('tipShown', 'true');
+    });
+  } else {
+    // Användaren har redan sett tipset tidigare
+    $tipBox.hide();
+  }
 
 	// Speak button click
 	// $('#speak-btn').click(function() {
@@ -252,7 +272,7 @@ $(document).ready(function(){
 	      localStorage.removeItem('skrivprata-text');
 
 				// rensa copy to print helper
-				$('#print_helper').text('');
+				$('#print-helper').text('');
 
 	      // Spela suddljudet
 	      const audio = new Audio('audio/eraser.mp3');
@@ -421,7 +441,7 @@ $(document).ready(function(){
 
 	// cope text to print helper
 	function copy_to_print_helper(){
-    $('#print_helper').text($('#text-area').val());
+    $('#print-helper').text($('#text-area').val());
   }
 
 	// update footer stats

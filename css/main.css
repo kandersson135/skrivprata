@@ -256,6 +256,20 @@ footer p {
 		font-size: 10px;
 }
 
+#tip-box {
+  background: #fff;
+  border: 1px solid rgba(50, 50, 50, 0.2);
+  border-radius: 8px;
+  box-shadow: 5px 5px rgba(50, 50, 50, 0.1);
+  display: none;
+  padding: 16px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 80px;
+  margin-bottom: -50px;
+  width: 68%;
+}
+
 /* TEXTAREA */
 #text-area {
   line-height: 38px;
@@ -280,7 +294,7 @@ footer p {
   background-image: linear-gradient(to right, #FFF, #FFF 10px, transparent 10px), linear-gradient(to left, #FFF, #FFF 10px, transparent 10px), repeating-linear-gradient(#FFF, #FFF 36px, #f1f1f1 36px, #f1f1f1 38px);
 }
 
-#print_helper {
+#print-helper {
   display: none;
 }
 
@@ -473,7 +487,7 @@ div.spacer {clear:both; display:block; height:10px;}
 } */
 
 @media print {
-	#print_helper {
+	#print-helper {
     display: block;
     overflow: visible;
 		font-family: var(--text-font, 'Patrick Hand'), sans-serif;
