@@ -45,15 +45,18 @@ $(document).ready(function(){
 
 	// Dark mode button click
 	let darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+	const metaTheme = document.querySelector('meta[name="theme-color"]');
 
 	// Sätt initialt läge vid sidladdning
 	if (darkModeEnabled) {
 	  $('body').addClass('dark-mode');
 	  $('#darkmode-btn').html('<i class="fas fa-moon fa-fw"></i>');
 	  $('#darkmode-btn').attr('title', 'Avaktivera mörkt läge');
+		metaTheme.setAttribute('content', '#352b46');
 	} else {
 	  $('#darkmode-btn').html('<i class="far fa-moon fa-fw"></i>');
 	  $('#darkmode-btn').attr('title', 'Aktivera mörkt läge');
+		metaTheme.setAttribute('content', '#9967E6');
 	}
 
 	// Klickhändelse för knappen
@@ -65,11 +68,13 @@ $(document).ready(function(){
 	    // Aktivera
 	    $(this).html('<i class="fas fa-moon fa-fw"></i>');
 	    $(this).attr('title', 'Avaktivera mörkt läge');
+			metaTheme.setAttribute('content', '#352b46');
 	    localStorage.setItem('darkMode', 'true');
 	  } else {
 	    // Avaktivera
 	    $(this).html('<i class="far fa-moon fa-fw"></i>');
 	    $(this).attr('title', 'Aktivera mörkt läge');
+			metaTheme.setAttribute('content', '#9967E6');
 	    localStorage.setItem('darkMode', 'false');
 	  }
 	});
