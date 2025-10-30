@@ -265,20 +265,6 @@ footer p {
 		font-size: 10px;
 }
 
-#tip-box {
-  background: #fff;
-  border: 1px solid rgba(50, 50, 50, 0.2);
-  border-radius: 8px;
-  box-shadow: 5px 5px rgba(50, 50, 50, 0.1);
-  display: none;
-  padding: 16px;
-  position: relative;
-  margin: 0 auto;
-  margin-top: 80px;
-  margin-bottom: -50px;
-  width: 68%;
-}
-
 /* TEXTAREA */
 #text-area {
   line-height: 38px;
@@ -591,6 +577,82 @@ div.spacer {clear:both; display:block; height:10px;}
 		width: 100px;
 	}
 }
+
+/* === Dark Mode === */
+body.dark-mode {
+  background-color: #201a27; /* varm mörklila istället för svart */
+  color: #f6f3ff; /* nästan vit, men med lite lila ton */
+}
+
+/* Header */
+body.dark-mode #tool-header {
+  background-color: #352b46; /* mörk lavendel-lila */
+  border-bottom: 4px solid #201a27; /* accentlila */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Textarea */
+body.dark-mode #text-area {
+  background-color: #2a2236; /* djup violett bakgrund */
+  color: #f3eaff;
+  border-color: #4a3e63;
+  box-shadow: 4px 4px rgba(0,0,0,0.4);
+}
+
+/* Linjer i textarea */
+body.dark-mode #text-area.lines {
+  background-image:
+    linear-gradient(to right, #2a2236, #2a2236 10px, transparent 10px),
+    linear-gradient(to left, #2a2236, #2a2236 10px, transparent 10px),
+    repeating-linear-gradient(#2a2236, #2a2236 36px, #3b3250 36px, #3b3250 38px);
+}
+
+/* SweetAlert */
+body.dark-mode .swal-modal {
+  background-color: #352b46 !important;
+  color: #f3eaff !important;
+  border: 1px solid #5c4b7e !important;
+}
+
+body.dark-mode .setting {
+  border-bottom: 1px solid #2a2236;
+}
+
+body.dark-mode .swal-title,
+body.dark-mode .swal-text {
+  color: #f3eaff;
+}
+
+/* Footer */
+body.dark-mode #footer-bg {
+  background-color: #2a2236;
+  border-top: 1px solid #4a3e63;
+  color: #d7cfff;
+}
+
+/* Buttons */
+body.dark-mode .tool-buttons button {
+  color: #f3eaff;
+}
+
+body.dark-mode .tool-buttons button:hover {
+  background-color: #4a3e63; /* mjuk lila hover */
+  border-radius: 4px;
+}
+
+body.dark-mode .tool-buttons button:active {
+  background-color: #6b4fc3;
+}
+
+/* Scrollbar (för att matcha stilen på iPad/mac) */
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background-color: #6b4fc3;
+  border-radius: 6px;
+}
+body.dark-mode ::-webkit-scrollbar-track {
+  background-color: #2a2236;
+}
+
 
 /*
 https://codepen.io/fivera/pen/RPyReX

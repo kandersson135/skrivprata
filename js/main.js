@@ -1,34 +1,11 @@
 $(document).ready(function(){
 	const VERSION = "0.0.9";
 	const $textArea = $('#text-area');
-  const $tipBox = $('#tip-box');
-	const tipShown = localStorage.getItem('tipShown');
 
-	// Setting text-area focus on page load
-	$('#text-area').focus();
-
-	// version display
-	$('#versionDisplay').text(`Version: ${VERSION}`);
-
-	// Fetch text from localStorage
-	$('#text-area').val(localStorage.getItem('skrivprata-text') || '');
-
-	// Kollar om tipsrutan redan visats
-	// if (!tipShown) {
-  //   // Visa bara om det är första gången OCH texten är tom
-  //   if ($textArea.val().trim() === "") {
-  //     $tipBox.show();
-  //   }
-	//
-  //   // När användaren börjar skriva → dölj tipsrutan och spara flagga
-  //   $textArea.one('input', function() {
-  //     $tipBox.fadeOut(800);
-  //     localStorage.setItem('tipShown', 'true');
-  //   });
-  // } else {
-  //   // Användaren har redan sett tipset tidigare
-  //   $tipBox.hide();
-  // }
+	// Kör vid page load
+	$textArea.focus(); 																						// Setting text-area focus
+	$('#versionDisplay').text(`Version: ${VERSION}`); 						// version display
+	$textArea.val(localStorage.getItem('skrivprata-text') || '');	// Fetch text from localStorage
 
 	// Speak button click
 	// $('#speak-btn').click(function() {
@@ -42,42 +19,60 @@ $(document).ready(function(){
 
 	// Speak button click
 	$('#speak-btn').click(function() {
-	  let text = $('#text-area').val();
+	  let text = $textArea.val();
 	  if (text.trim() !== "") {
 	    speakText(text.toLowerCase(), speechRate); // använder vår wrapper
 	  }
-	  $('#text-area').focus();
+	  $textArea.focus();
 	});
 
-	// short command
+	// CTRL + . short command
 	$(document).on('keydown', function(e) {
 	  if (e.ctrlKey && e.key === '.') {
 	    e.preventDefault();
-			let text = $('#text-area').val();
+			let text = $textArea.val();
 		  if (text.trim() !== "") {
 		    speakText(text.toLowerCase(), speechRate); // använder vår wrapper
 		  }
-		  $('#text-area').focus();
+		  $textArea.focus();
 	  }
 	});
 
   // Print button click
 	$('#print-btn').click(function() {
     window.print();
-
-		//resizeAndPrint();
   });
 
-	function resizeAndPrint() {
-		var _print = window.print;
-			window.print = function() {
-				$('textarea').each(function() {
-					$(this).height($(this).prop('scrollHeight'));
-				});
-				_print();
-			}
-		window.print();
+	// Dark mode button click
+	let darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+
+	// Sätt initialt läge vid sidladdning
+	if (darkModeEnabled) {
+	  $('body').addClass('dark-mode');
+	  $('#darkmode-btn').html('<i class="fas fa-moon fa-fw"></i>');
+	  $('#darkmode-btn').attr('title', 'Avaktivera mörkt läge');
+	} else {
+	  $('#darkmode-btn').html('<i class="far fa-moon fa-fw"></i>');
+	  $('#darkmode-btn').attr('title', 'Aktivera mörkt läge');
 	}
+
+	// Klickhändelse för knappen
+	$('#darkmode-btn').on('click', function() {
+	  $('body').toggleClass('dark-mode');
+	  darkModeEnabled = !$('body').hasClass('dark-mode'); // uppdatera flaggan
+
+	  if ($('body').hasClass('dark-mode')) {
+	    // Aktivera
+	    $(this).html('<i class="fas fa-moon fa-fw"></i>');
+	    $(this).attr('title', 'Avaktivera mörkt läge');
+	    localStorage.setItem('darkMode', 'true');
+	  } else {
+	    // Avaktivera
+	    $(this).html('<i class="far fa-moon fa-fw"></i>');
+	    $(this).attr('title', 'Aktivera mörkt läge');
+	    localStorage.setItem('darkMode', 'false');
+	  }
+	});
 
   // Settings button click
 	// Hämta sparade inställningar
@@ -140,10 +135,10 @@ $(document).ready(function(){
 		  let showLines = $(this).is(':checked');
 
 		  if(showLines) {
-		    $('#text-area').addClass('lines');
+		    $textArea.addClass('lines');
 		    localStorage.setItem("option", "2");
 		  } else {
-		    $('#text-area').removeClass('lines');
+		    $textArea.removeClass('lines');
 		    localStorage.setItem("option", "1");
 		  }
 		});
@@ -161,7 +156,7 @@ $(document).ready(function(){
 		$('#spellcheck-toggle').on('change', function() {
 		  let enabled = $(this).is(':checked');
 
-		  $('#text-area')
+		  $textArea
 		    .attr('spellcheck', enabled)
 		    .attr('autocorrect', enabled ? 'on' : 'off');
 
@@ -173,18 +168,6 @@ $(document).ready(function(){
 			dyslexicFontEnabled = $(this).is(':checked');
 
 		  // Change font
-		  // document.documentElement.style.setProperty(
-		  //   '--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
-		  // );
-
-			// if (dyslexicFontEnabled) {
-			//   document.documentElement.style.setProperty('--text-font', 'OpenDyslexic3');
-			//   document.documentElement.style.setProperty('--font-size', '22px');
-			// } else {
-			//   document.documentElement.style.setProperty('--text-font', 'Patrick Hand');
-			//   document.documentElement.style.setProperty('--font-size', '28px');
-			// }
-
 			const isIpad = /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
 
 			if (dyslexicFontEnabled) {
@@ -201,7 +184,6 @@ $(document).ready(function(){
 			  document.documentElement.style.setProperty('--font-size', '28px');
 			}
 
-
 		  // Save to localStorage
 		  localStorage.setItem("dyslexicFont", dyslexicFontEnabled);
 		});
@@ -210,22 +192,17 @@ $(document).ready(function(){
 	// At page load, apply saved settings
 	// lines
 	if(lineOption === "1") {
-	  $("#text-area").removeClass("lines");
+	  $textArea.removeClass("lines");
 	} else {
-	  $("#text-area").addClass("lines");
+	  $textArea.addClass("lines");
 	}
 
 	// spell check
-	$('#text-area')
+	$textArea
   .attr('spellcheck', spellcheckEnabled)
   .attr('autocorrect', spellcheckEnabled ? 'on' : 'off');
 
 	// font
-	// document.documentElement.style.setProperty(
-	// 	'--text-font', dyslexicFontEnabled ? 'OpenDyslexic3' : 'Patrick Hand'
-	// );
-	//$('#font-toggle').prop('checked', dyslexicFontEnabled);
-
 	const isIpad = /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
 
 	if (dyslexicFontEnabled) {
@@ -244,7 +221,7 @@ $(document).ready(function(){
 
   // Clear button click
 	$('#clear-btn').click(function() {
-	  const $txt = $('#text-area');
+	  const $txt = $textArea;
 	  const currentText = $txt.val().trim();
 
 	  // Kolla om textarean är tom
@@ -298,46 +275,6 @@ $(document).ready(function(){
 	    }
 	  });
 	});
-
-	// $('#clear-btn').click(function() {
-	//   swal({
-	//     title: "Är du säker?",
-	//     text: "All text kommer att raderas.",
-	//     buttons: ["Avbryt", "Rensa"],
-	//   })
-	//   .then((willClear) => {
-	//     if (willClear) {
-	// 		  const $txt = $('#text-area');
-	// 		  let val = $txt.val();
-	// 		  let i = val.length;
-	//
-	// 			// Remove text from localStorage
-	// 			localStorage.removeItem('skrivprata-text');
-	//
-	// 			// play sound
-	// 		  const audio = new Audio('audio/eraser.mp3');
-	// 		  audio.play();
-	// 			audio.loop = true;
-	//
-	// 		  const interval = setInterval(function(){
-	// 		    if(i <= 0){
-	// 		      clearInterval(interval);
-	// 		      $txt.val('');
-	// 		      $txt.focus();
-	//
-	// 					updateFooterStats();
-	//
-	// 					// stop sound
-	// 		      audio.pause();
-	// 		      audio.currentTime = 0;
-	// 		      return;
-	// 		    }
-	// 		    $txt.val(val.slice(0,i));
-	// 		    i--;
-	// 		  }, 10); // 10ms mellan varje bokstav
-	//     }
-	//   });
-	// });
 
 	// Help button click
 	var wrapper2 = document.createElement('div');
@@ -454,12 +391,12 @@ $(document).ready(function(){
 
 	// cope text to print helper
 	function copy_to_print_helper(){
-    $('#print-helper').text($('#text-area').val());
+    $('#print-helper').text($textArea.val());
   }
 
 	// update footer stats
 	function updateFooterStats() {
-	  let text = $('#text-area').val();
+	  let text = $textArea.val();
 	  let words = text.trim().split(/\s+/).filter(Boolean).length;
 	  let chars = text.length;
 
@@ -474,7 +411,7 @@ $(document).ready(function(){
 
 	let justReadSentence = false;
 
-	$('#text-area').on('keydown', function(e) {
+	$textArea.on('keydown', function(e) {
 		let textArea = this;
 
 		// Mellanslag eller enter = läs ord (om vi inte just läst en mening)
@@ -525,7 +462,7 @@ $(document).ready(function(){
 	copy_to_print_helper();
 
 	// Kör varje gång texten ändras
-	$('#text-area').on('input', function() {
+	$textArea.on('input', function() {
 	  localStorage.setItem('skrivprata-text', $(this).val());
 		updateFooterStats();
 		copy_to_print_helper();
